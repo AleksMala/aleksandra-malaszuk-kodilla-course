@@ -2,35 +2,32 @@ package com.kodilla;
 
 import java.util.Random;
 
-class Operations{
+public class Calculator {
+
     private int a;
     private int b;
     private static final int LENGTH_OF_VARIABLE = 20;
     private int result;
 
-    public Operations(){
+    public Calculator() {
         Random rnd = new Random();
         a = rnd.nextInt(LENGTH_OF_VARIABLE);
         b = rnd.nextInt(LENGTH_OF_VARIABLE);
     }
 
-    public int adding(){
+    public void add(){
         result = a + b;
         System.out.println("Result of adding is: " + result);
-        return result;
     }
 
-    public int subtraction(){
+    public void subtract(){
         result = a - b;
         System.out.println("Result of subtraction is: " + result);
-        return result;
     }
-}
-public class Calculator {
-
-    public static void main (String[] args){
-        Operations calculator = new Operations();
-        calculator.adding();
-        calculator.subtraction();
+    
+    public static void main (String[] args) {
+        Calculator calculator = new Calculator();
+        calculator.add();
+        calculator.subtract();
     }
 }
