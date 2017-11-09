@@ -3,8 +3,6 @@ package com.kodilla.testing;
 import com.kodilla.testing.user.SimpleUser;
 import com.kodilla.testing.calculator.Calculator;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class TestingMain {
     public static void main(String[] args){
         SimpleUser simpleUser = new SimpleUser("theForumUser");
@@ -18,24 +16,14 @@ public class TestingMain {
         }
 
         //"Test - pierwszy test jednostkowy"
-        Calculator calculator1 = new Calculator();
+        Calculator calculator = new Calculator();
 
-        int calcResult1 = calculator1.add(7, 0);
-        if (calcResult1 != 0) {
+        int addResult = calculator.add(7, 0);
+        int subResult = calculator.subtract(7, 4);
+        if (addResult == 7 && subResult == 3){
             System.out.println("test OK");
         } else {
             System.out.println("Error");
         }
-
-        //"Test - drugi test jednostkowy"
-        Calculator calculator2 = new Calculator();
-
-        int calcResult2 = calculator2.subtract(4, 7);
-        if (calcResult2 != 0) {
-            System.out.println("test OK");
-        } else {
-            System.out.println("Error");
-        }
-
     }
 }
