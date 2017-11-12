@@ -2,6 +2,8 @@ package com.kodilla.testing.collection;
 import com.kodilla.testing.collection.OddNumbersExterminator;
 import org.junit.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CollectionTestSuite {
     @Before
@@ -16,24 +18,27 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorEmptyList() {
         //Given
-        OddNumbersExterminator exam = new OddNumbersExterminator(0);
+        OddNumbersExterminator exam = new OddNumbersExterminator();
         ArrayList<Integer> numbers = new ArrayList<>();
         //When
-        exam.exterminate(numbers);
-        System.out.println("Testing Exterminator for Empty List");
+        List<Integer> result = exam.exterminate(numbers);
+        System.out.println("Exterminator for Empty List - Testing");
         //Then
-        Assert.assertEquals(0, exam.exterminate(numbers));
+        Assert.assertTrue(result.isEmpty());
     }
 
     @Test
     public void testOddNumbersExterminatorNormalList(){
         //Given
-        OddNumbersExterminator exam = new OddNumbersExterminator(10);
+        OddNumbersExterminator exam = new OddNumbersExterminator();
         ArrayList<Integer> numbers = new ArrayList<>();
+        for(int i = 0; i<10; i++) {
+            numbers.add(i);
+        }
         //When
-        exam.getArrayLength();
-        System.out.println("Testing while List contains numbers");
+        List<Integer> result = exam.exterminate(numbers);
+        System.out.println("Normal List - Testing");
         //Then
-        Assert.assertEquals(10,exam.getArrayLength());
+        Assert.assertEquals(Arrays.asList(0, 2, 4, 6, 8),result);
     }
 }
