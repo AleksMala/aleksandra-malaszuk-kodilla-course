@@ -1,14 +1,14 @@
 package com.kodilla.testing.shape;
 
 public class Circle implements Shape {
-    private double r;
+    private double radius;
 
-    public Circle(double r) {
-        this.r = r;
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
     public double getR() {
-        return r;
+        return radius;
     }
 
     @Override
@@ -18,9 +18,6 @@ public class Circle implements Shape {
 
     @Override
     public double getField() {
-        double result;
-        result = 3.14*r*r;
-        return result;
-
+        return Math.PI*radius*radius;
     }
 }

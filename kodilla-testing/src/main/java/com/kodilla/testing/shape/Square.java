@@ -1,14 +1,14 @@
 package com.kodilla.testing.shape;
 
 public class Square implements Shape {
-    private double a;
+    private double side;
 
-    public Square(double a) {
-        this.a = a;
+    public Square(double side) {
+        this.side = side;
     }
 
     public double getA() {
-        return a;
+        return side;
     }
 
     @Override
@@ -18,8 +18,6 @@ public class Square implements Shape {
 
     @Override
     public double getField() {
-        double result;
-        result = a*a;
-        return result;
+        return side*side;
     }
 }

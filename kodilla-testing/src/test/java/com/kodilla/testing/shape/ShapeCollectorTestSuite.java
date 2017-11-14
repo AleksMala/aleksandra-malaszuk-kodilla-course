@@ -1,62 +1,89 @@
 package com.kodilla.testing.shape;
 
 import org.junit.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class ShapeCollectorTestSuite {
 
+    private ShapeCollector shapeCollect;
+    private Shape circle;
+    private static int counter;
+    private static final int RADIAL_DIMENSION = 5;
+
     @Before
     public void before(){
-        System.out.println("Test Case - begin");
+        counter++;
+        System.out.println(counter + ". Test Case - begin");
+        circle = new Circle(RADIAL_DIMENSION);
+        shapeCollect = new ShapeCollector();
     }
+
     @After
     public void after(){
         System.out.println("Test Case: end");
     }
+
     @Test
     public void testAddFigure() {
         //Given
-        Shape circle = new Circle(5);
-        ShapeCollector shapeCollect = new ShapeCollector(circle);
         //When
-        Shape a = shapeCollect.addFigure(circle);
+        Shape figure = shapeCollect.addFigure(circle);
         System.out.println("Add Figure - Testing");
         //Then
-        Assert.assertEquals(circle, a);
+        Assert.assertEquals(circle, figure);
     }
+
     @Test
     public void testRemoveFigure(){
         //Given
-        Shape circle = new Circle(5);
-        ShapeCollector shapeCollect = new ShapeCollector(circle);
         shapeCollect.addFigure(circle);
         //When
-        boolean result = shapeCollect.removeFigure(circle);
+        List<Shape> result = shapeCollect.removeFigure(circle);
         System.out.println("Remove Figure - Testing");
         //Then
-        Assert.assertTrue(result);
+        Assert.assertNotNull(result);
     }
+
+    @Test
+    public void testRemoveFigureFromEmptyList(){
+        //Given
+        //When
+        List<Shape> result = shapeCollect.removeFigure(circle);
+        System.out.println("Remove Figure When List is Empty - Testing");
+        //Then
+        Assert.assertTrue(result.isEmpty());
+    }
+
     @Test
     public void testGetFigure(){
         //Given
-        Shape circle = new Circle(5);
-        ShapeCollector shapeCollect = new ShapeCollector(circle);
         shapeCollect.addFigure(circle);
         //When
-        Shape shapeCircle = shapeCollect.getFigure(0);
+        Shape figure = shapeCollect.getFigure(0);
         System.out.println("Get Figure - Testing");
         //Then
-        Assert.assertEquals(circle, shapeCircle );
+        Assert.assertEquals(circle, figure);
     }
+
+    @Test
+    public void testGetFigureFromEmptyList(){
+        //Given
+        //When
+        Shape figure = shapeCollect.getFigure(2);
+        System.out.println("Get Figure From Empty List - Testing");
+        //Then
+        Assert.assertNull(figure);
+    }
+
     @Test
     public void testShowFigures(){
         //Given
-        Shape circle = new Circle(5);
-        ShapeCollector shapeCollect = new ShapeCollector(circle);
         shapeCollect.addFigure(circle);
         //When
-        String figure = shapeCollect.showFigures(circle);
+        List<Shape> figure = shapeCollect.showFigures(circle);
         System.out.println("Show Figure - Testing");
         //Then
-        Assert.assertEquals(circle.getShapeName() +" "+ circle.getField(), figure);
+        Assert.assertEquals(Arrays.asList(circle), figure);
     }
 }
