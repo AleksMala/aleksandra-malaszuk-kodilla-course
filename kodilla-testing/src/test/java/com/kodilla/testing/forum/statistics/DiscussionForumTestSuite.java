@@ -6,8 +6,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -16,81 +14,120 @@ public class DiscussionForumTestSuite {
     private DiscussionForum forum = new DiscussionForum(statistics);
 
     @Test
-    public void testCalculateAdvStatisticsZeroPosts() {
+    public void testGetAvPost(){
         //Given
-        int numberOfPosts = 0;
+        int post = 1000;
         List<String> user = new ArrayList<>();
         user.add("Jacek");
-        user.add("Iwona");
+        user.add("Tomek");
+        when(statistics.postsCount()).thenReturn(post);
         when(statistics.usersNames()).thenReturn(user);
-        when(statistics.postsCount()).thenReturn(numberOfPosts);
         //When
-        double result = forum.getPostPerUser();
+        double result = forum.calculateAverage(statistics);
         //Then
-        assertTrue(result == 0);
+        Assert.assertEquals(500, result,1);
     }
 
-
     @Test
-    public void testCalculateAdvStatisticsThousandPosts(){
+    public void testGetAvWithZeroPost(){
         //Given
-        int numberOfPosts = 1000;
+        int post = 0;
         List<String> user = new ArrayList<>();
         user.add("Jacek");
-        user.add("Iwona");
+        user.add("Tomek");
+        when(statistics.postsCount()).thenReturn(post);
         when(statistics.usersNames()).thenReturn(user);
-        when(statistics.postsCount()).thenReturn(numberOfPosts);
         //When
-        double result = forum.getPostPerUser();
+        double result = forum.calculateAverage(statistics);
         //Then
-        assertEquals(500, result,0);
+        Assert.assertEquals(0, result,1);
     }
 
     @Test
-    public void testCalculateAdvStatisticsZeroComments(){
+    public void testGetAvWithZeroComments(){
         //Given
-        int numberOfComments = 0;
-        int numberOfPosts = 10;
-        when(statistics.commentsCount()).thenReturn(numberOfComments);
-        when(statistics.postsCount()).thenReturn(numberOfPosts);
-        //When
-        double result = forum.getCommentsPerPost();
-        //Then
-        assertTrue(result == 0);
-    }
-
-    @Test
-    public void testCalculateAdvStatisticsZeroUsers(){
-        //Given
+        int comments = 0;
         List<String> users = new ArrayList<>();
-        int numberOfComments = 2;
-        when(statistics.commentsCount()).thenReturn(numberOfComments);
+        users.add("Jacek");
+        users.add("Tomek");
+        when(statistics.commentsCount()).thenReturn(comments);
         when(statistics.usersNames()).thenReturn(users);
         //When
-        double result = forum.getCommentsPerUser();
+        double result = forum.calculateAverage(statistics);
         //Then
-        assertTrue(result == 0);
+        Assert.assertEquals(0, result,1);
     }
-    @Test
-    public void testCalculateAdvStatisticsHundredUsers() {
-        //Given
-        int user = 100;
-        int numberOfComments = 2;
-        when(statistics.commentsCount()).thenReturn(numberOfComments);
-        when(statistics.usersNames().size()).thenReturn(user);
-        //When
-        double result = forum.getPostPerUser();
-        //Then
-        assertEquals(50, result,0);
-        }
 
-        @Test
+    @Test
+    public void testGetAvWithZeroUsers(){
+        //Given
+        int comments = 10;
+        List<String> users = new ArrayList<>();
+        when(statistics.commentsCount()).thenReturn(comments);
+        when(statistics.usersNames()).thenReturn(users);
+        //When
+        double result = forum.calculateAverage(statistics);
+        //Then
+        Assert.assertEquals(0, result,1);
+    }
+
+    @Test
+    public void testGetAvWithUsers(){
+        //Given
+        int comments = 10;
+        List<String> users = new ArrayList<>();
+        for (int i = 0; i<100; i++){
+            users.add("Jacek");
+        }
+        when(statistics.commentsCount()).thenReturn(comments);
+        when(statistics.usersNames()).thenReturn(users);
+        //When
+        double result = forum.calculateAverage(statistics);
+        //Then
+        Assert.assertEquals(1, result,1);
+    }
+
+    @Test
+    public void testMoreComments(){
+        //Given
+        int comments = 10;
+        int post = 1;
+        when(statistics.postsCount()).thenReturn(post);
+        when(statistics.commentsCount()).thenReturn(comments);
+        //When
+        double result = forum.calculateAverage(statistics);
+        //Then
+        Assert.assertEquals(10, result,1);
+    }
+
+    @Test
+    public void testMorePosts(){
+        //Given
+        int comments = 10;
+        int post = 100;
+        when(statistics.postsCount()).thenReturn(post);
+        when(statistics.commentsCount()).thenReturn(comments);
+        //When
+        double result = forum.calculateAverage(statistics);
+        //Then
+        Assert.assertEquals(0.1, result, 1);
+    }
+
+    @Test
     public void testShowStatistics(){
         //Given
+        int comments = 10;
+        int post = 100;
+        List<String> users = new ArrayList<>();
+        users.add("Jacek");
         //When
-        Statistics result = forum.ShowStatistics(statistics);
+        when(statistics.usersNames()).thenReturn(users);
+        when(statistics.postsCount()).thenReturn(post);
+        when(statistics.commentsCount()).thenReturn(comments);
+        Statistics stat = forum.ShowStatistics(statistics);
         //Then
-        assertEquals(statistics, result);
-        }
+        Assert.assertEquals(statistics, stat);
     }
+
+}
 
