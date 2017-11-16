@@ -7,10 +7,6 @@ public class Circle implements Shape {
         this.radius = radius;
     }
 
-    public double getR() {
-        return radius;
-    }
-
     @Override
     public String getShapeName() {
         return "Circle";

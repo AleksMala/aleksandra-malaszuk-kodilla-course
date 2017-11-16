@@ -9,14 +9,6 @@ public class Triangle implements Shape {
         this.height = height;
     }
 
-    public double getSide() {
-        return side;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
     @Override
     public String getShapeName() {
         return "Triangle";

@@ -25,7 +25,7 @@ public class ShapeCollectorTestSuite {
     }
 
     @Test
-    public void testAddFigure() {
+    public void testAddFigure(){
         //Given
         //When
         Shape figure = shapeCollect.addFigure(circle);
@@ -39,20 +39,20 @@ public class ShapeCollectorTestSuite {
         //Given
         shapeCollect.addFigure(circle);
         //When
-        List<Shape> result = shapeCollect.removeFigure(circle);
+        boolean result = shapeCollect.removeFigure(circle);
         System.out.println("Remove Figure - Testing");
         //Then
-        Assert.assertNotNull(result);
+        Assert.assertTrue(result);
     }
 
     @Test
     public void testRemoveFigureFromEmptyList(){
         //Given
         //When
-        List<Shape> result = shapeCollect.removeFigure(circle);
-        System.out.println("Remove Figure When List is Empty - Testing");
+        boolean result = shapeCollect.removeFigure(circle);
+        System.out.println("Removing Figure if List is Empty - Testing");
         //Then
-        Assert.assertTrue(result.isEmpty());
+        Assert.assertFalse(result);
     }
 
     @Test
@@ -77,11 +77,21 @@ public class ShapeCollectorTestSuite {
     }
 
     @Test
+    public void testGetFigureFromNegativeIndex(){
+        //Given
+        //When
+        Shape figure = shapeCollect.getFigure(-1);
+        System.out.println("Get Figure From Negative Index - Testing");
+        //Then
+        Assert.assertNull(figure);
+    }
+
+    @Test
     public void testShowFigures(){
         //Given
         shapeCollect.addFigure(circle);
         //When
-        List<Shape> figure = shapeCollect.showFigures(circle);
+        List<Shape> figure = shapeCollect.showFigures();
         System.out.println("Show Figure - Testing");
         //Then
         Assert.assertEquals(Arrays.asList(circle), figure);

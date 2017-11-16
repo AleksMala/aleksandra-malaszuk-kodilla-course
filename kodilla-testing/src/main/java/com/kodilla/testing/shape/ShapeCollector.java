@@ -11,9 +11,8 @@ public class ShapeCollector {
         return shape;
     }
 
-    public List<Shape> removeFigure(Shape shape){
-        figureShape.remove(shape);
-        return figureShape;
+    public boolean removeFigure(Shape shape){
+        return figureShape.remove(shape);
     }
 
     public Shape getFigure(int numberOfFigure){
@@ -24,7 +23,7 @@ public class ShapeCollector {
         return shape;
     }
 
-    public List<Shape> showFigures(Shape shape){
+    public List<Shape> showFigures(){
         return figureShape;
     }
 }
