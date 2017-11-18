@@ -1,17 +1,20 @@
 package com.kodilla.testing.forum.statistics;
 
-import org.junit.Assert;
-import org.junit.Test;
-
+import org.junit.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class DiscussionForumTestSuite {
     private Statistics statistics = mock(Statistics.class);
     private DiscussionForum forum = new DiscussionForum(statistics);
+
+    @Before
+    public void beforeEveryTest() {
+    }
 
     @Test
     public void testGetAvPost(){
@@ -23,9 +26,9 @@ public class DiscussionForumTestSuite {
         when(statistics.postsCount()).thenReturn(post);
         when(statistics.usersNames()).thenReturn(user);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getPostPerUser();
         //Then
-        Assert.assertEquals(500, result,1);
+        assertEquals(500, result,1);
     }
 
     @Test
@@ -38,9 +41,9 @@ public class DiscussionForumTestSuite {
         when(statistics.postsCount()).thenReturn(post);
         when(statistics.usersNames()).thenReturn(user);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getPostPerUser();
         //Then
-        Assert.assertEquals(0, result,1);
+        assertEquals(0, result,1);
     }
 
     @Test
@@ -53,9 +56,9 @@ public class DiscussionForumTestSuite {
         when(statistics.commentsCount()).thenReturn(comments);
         when(statistics.usersNames()).thenReturn(users);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getCommentPerUser();
         //Then
-        Assert.assertEquals(0, result,1);
+        assertEquals(0, result,1);
     }
 
     @Test
@@ -66,9 +69,9 @@ public class DiscussionForumTestSuite {
         when(statistics.commentsCount()).thenReturn(comments);
         when(statistics.usersNames()).thenReturn(users);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getCommentPerUser();
         //Then
-        Assert.assertEquals(0, result,1);
+        assertEquals(0, result,1);
     }
 
     @Test
@@ -82,9 +85,9 @@ public class DiscussionForumTestSuite {
         when(statistics.commentsCount()).thenReturn(comments);
         when(statistics.usersNames()).thenReturn(users);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getCommentPerUser();
         //Then
-        Assert.assertEquals(1, result,1);
+        assertEquals(1, result,1);
     }
 
     @Test
@@ -95,9 +98,9 @@ public class DiscussionForumTestSuite {
         when(statistics.postsCount()).thenReturn(post);
         when(statistics.commentsCount()).thenReturn(comments);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getCommentPerPost();
         //Then
-        Assert.assertEquals(10, result,1);
+        assertEquals(10, result,1);
     }
 
     @Test
@@ -108,9 +111,9 @@ public class DiscussionForumTestSuite {
         when(statistics.postsCount()).thenReturn(post);
         when(statistics.commentsCount()).thenReturn(comments);
         //When
-        double result = forum.calculateAverage(statistics);
+        double result = forum.getCommentPerPost();
         //Then
-        Assert.assertEquals(0.1, result, 1);
+        assertEquals(0.1, result, 1);
     }
 
     @Test
@@ -126,7 +129,7 @@ public class DiscussionForumTestSuite {
         when(statistics.commentsCount()).thenReturn(comments);
         Statistics stat = forum.ShowStatistics(statistics);
         //Then
-        Assert.assertEquals(statistics, stat);
+        assertEquals(statistics, stat);
     }
 
 }

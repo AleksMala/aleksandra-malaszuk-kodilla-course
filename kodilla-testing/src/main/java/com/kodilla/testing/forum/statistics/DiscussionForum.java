@@ -1,38 +1,55 @@
 package com.kodilla.testing.forum.statistics;
 
+import java.util.List;
+
 public class DiscussionForum {
 
     private Statistics statistics;
+    private double commentPerPost;
+    private double postPerUser;
+    private double commentPerUser;
+    private int posts ;
+    private int comments;
+    private List<String> users;
 
     public DiscussionForum(Statistics statistics) {
         this.statistics = statistics;
     }
 
-    public double getAvPost(){
-        return statistics.postsCount()/statistics.usersNames().size();
-    }
-    public double getAvComPerUser(){
-        return statistics.commentsCount()/statistics.usersNames().size();
-    }
-    public double getAvComPerPost(){
-        return  statistics.commentsCount()/statistics.postsCount();
+    public void calculateAverage (Statistics statistics){
+        posts = statistics.postsCount();
+        comments = statistics.commentsCount();
+        users =  statistics.usersNames();
+        postPerUser = posts/users.size();
+        commentPerUser = comments/users.size();
+        commentPerPost = comments/posts;
     }
 
-    public double calculateAverage (Statistics statistics){
-        if(statistics.postsCount()>0 && statistics.commentsCount()>0) {
-            return getAvComPerPost();
-        }
-        if(statistics.usersNames().size()>0 && statistics.postsCount()>0){
-            return getAvPost();
-        }
-        if (statistics.usersNames().size()>0 && statistics.commentsCount()>0){
-            return getAvComPerUser();
-        }
-        return 0;
+    public double getPostPerUser(){
+        return postPerUser;
+    }
+
+    public double getCommentPerUser(){
+        return commentPerUser;
+    }
+
+    public double getCommentPerPost(){
+        return commentPerPost;
+    }
+
+    private int getPostsCount(){
+        return posts;
+    }
+
+    public int getCommentsCount(){
+        return comments;
+    }
+
+    public List<String> getUsersName(){
+        return users;
     }
 
     public Statistics ShowStatistics(Statistics statistics){
         return statistics;
     }
-
 }
