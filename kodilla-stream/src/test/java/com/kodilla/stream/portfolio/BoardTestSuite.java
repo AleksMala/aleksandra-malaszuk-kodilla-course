@@ -137,7 +137,7 @@ public class BoardTestSuite {
         //Then
         Assert.assertEquals(2, longTasks);
     }
-
+//Average Days on Task
     @Test
     public void testAddTaskListAverageWorkingOnTask(){
         //Given
@@ -157,11 +157,5 @@ public class BoardTestSuite {
         double average = days/AvWorkingOnTask;
         //Then
         assertEquals(18.35, average,0.2);
-
-
-
-
-
-
     }
 }
