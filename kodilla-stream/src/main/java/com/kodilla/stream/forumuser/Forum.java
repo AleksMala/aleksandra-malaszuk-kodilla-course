@@ -14,7 +14,7 @@ public final class Forum {
         user.add(new ForumUser("Jacek",4,'M',1967,7,27,0));
         user.add(new ForumUser("Karolina",5,'F',1998, 6, 18,29));
         user.add(new ForumUser("Michał",6,'M',1973,1,1, 12));
-        user.add(new ForumUser("Maciek",7,'M',1993,5,30,16));
+        user.add(new ForumUser("Maciek",7,'M',1999,5,30,16));
     }
 
     public List<ForumUser> getList() {

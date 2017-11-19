@@ -4,25 +4,26 @@ import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.forumuser.Forum;
 import com.kodilla.stream.forumuser.ForumUser;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StreamMain {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            PoemBeautifier poemBeautifier = new PoemBeautifier();
-            poemBeautifier.beautify("",(text)->"John".toLowerCase());
-            poemBeautifier.beautify("",(text)->"John".toUpperCase());
-            poemBeautifier.beautify("",(text)->"John".substring(1,3));
-            poemBeautifier.beautify("",(text)->"John".replaceFirst("J", "D"));
+        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        poemBeautifier.beautify("STONE", string -> string.toLowerCase());
+        poemBeautifier.beautify( "john", string-> string.toUpperCase());
+        poemBeautifier.beautify("Noon", string -> string.substring(1, 3));
+        poemBeautifier.beautify("Work", string-> string.replaceFirst("k", "th"));
 
             Forum forum = new Forum();
-            Map<Integer, ForumUser> theResultMapOfUsers = forum.getList().stream()
+            Map<Integer, String> theResultMapOfUsers = forum.getList().stream()
                     .filter(ForumUser -> ForumUser.getSex() == 'M')
-                    .filter(ForumUser -> ForumUser.getBirthDate().getDayOfYear() < 1997)
                     .filter(ForumUser -> ForumUser.getPostsCount() > 0)
-                    .collect(Collectors.toMap(ForumUser::getUniqueId, ForumUser->ForumUser));
+                    .filter(f -> f.getBirthDate().plusYears(20).compareTo(LocalDate.now())<0)
+                    .collect(Collectors.toMap(ForumUser::getUniqueId, ForumUser::toString));
 
 
             System.out.println("# elements: " + theResultMapOfUsers.size());
