@@ -9,10 +9,8 @@ public final class World {
     private final List<Continent> world = new ArrayList<>();
 
     public List<Continent> getWorld() {
-        return world;
+        return new ArrayList<>(world);
     }
-
-
 
     public void addContinent(Continent continent){
         world.add(continent);
@@ -22,6 +20,6 @@ public final class World {
         return world.stream()
                 .flatMap(continent -> continent.getContinent().stream())
                 .map(Country::getPopulation)
-                .reduce(BigDecimal.ZERO, (sum, current) -> sum.add(current));
+                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
     }
 }
