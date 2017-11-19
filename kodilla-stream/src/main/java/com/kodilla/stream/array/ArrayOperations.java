@@ -10,6 +10,7 @@ public interface ArrayOperations {
                 .map(i->i+2)
                 .toArray();
         double average = IntStream.range(0, numbers.length)
+                .map(i->i+2)
                 .average()
                 .getAsDouble();
         return average;
