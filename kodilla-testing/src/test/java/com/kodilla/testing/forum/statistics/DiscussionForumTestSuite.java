@@ -17,7 +17,7 @@ public class DiscussionForumTestSuite {
     public void beforeEveryTest() {
         when(statistics.postsCount()).thenReturn(1000);
         when(statistics.commentsCount()).thenReturn(100);
-        when(statistics.usersNames()).thenReturn(usersNamegenerate(5));
+        when(statistics.usersNames()).thenReturn(usersNamegenerate(100));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class DiscussionForumTestSuite {
         forum.getPostPerUser();
         forum.getCommentPerPost();
         assertEquals(1000, forum.getPostsCount(),0);
-        assertEquals(200, forum.getPostPerUser(),0);
+        assertEquals(10, forum.getPostPerUser(),0);
         assertEquals(0.1, forum.getCommentPerPost(),1);
     }
 
@@ -88,9 +88,9 @@ public class DiscussionForumTestSuite {
         forum.getCommentPerUser();
         forum.getPostPerUser();
         forum.getUsersName();
-        assertEquals(20, forum.getCommentPerUser(),0);
-        assertEquals(200, forum.getPostPerUser(),0);
-        assertEquals(5, forum.getUsersName());
+        assertEquals(1, forum.getCommentPerUser(),0);
+        assertEquals(10, forum.getPostPerUser(),0);
+        assertEquals(100, forum.getUsersName());
     }
 
     @Test
