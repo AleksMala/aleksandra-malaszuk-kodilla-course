@@ -5,29 +5,39 @@ import java.util.List;
 
 public class DiscussionForum {
 
-    private Statistics statistics;
     private double commentPerPost;
     private double postPerUser;
     private double commentPerUser;
     private int posts;
     private int comments;
-    private List<String> users = new ArrayList<>();
-
-    public DiscussionForum(Statistics statistics) {
-        this.statistics = statistics;
-    }
+    private int usersNumber;
 
     public void calculateAverage (Statistics statistics){
         posts = statistics.postsCount();
         comments = statistics.commentsCount();
-        users =  statistics.usersNames();
-        postPerUser = getPostsCount()/getUsersName().size();
-        commentPerUser = getCommentsCount()/getUsersName().size();
-        commentPerPost = getCommentsCount()/getPostsCount();
+        usersNumber =  statistics.usersNames().size();
+
+        if(usersNumber == 0){
+            postPerUser = 0;
+        } else {
+            postPerUser = (double) posts / usersNumber;
+        }
+
+        if(usersNumber == 0){
+            commentPerUser = 0;
+        } else {
+            commentPerUser = (double) comments / usersNumber;
+        }
+
+        if (posts==0){
+            commentPerPost = 0;
+        } else {
+            commentPerPost = (double) comments / (double) posts;
+        }
     }
 
-    public double getPostPerUser(){
-        return postPerUser;
+    public double getPostPerUser() {
+            return postPerUser;
     }
 
     public double getCommentPerUser(){
@@ -38,7 +48,7 @@ public class DiscussionForum {
         return commentPerPost;
     }
 
-    private int getPostsCount(){
+    public int getPostsCount(){
         return posts;
     }
 
@@ -46,8 +56,8 @@ public class DiscussionForum {
         return comments;
     }
 
-    public List<String> getUsersName(){
-        return users;
+    public int getUsersName(){
+        return usersNumber;
     }
 
     public Statistics ShowStatistics(Statistics statistics){

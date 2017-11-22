@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.stream.Collectors.toList;
 import static junit.framework.Assert.assertEquals;
 
@@ -145,21 +146,19 @@ public class BoardTestSuite {
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
         //When
-        double AvWorkingOnTask = project.getTaskLists().stream()
-                .filter(inProgressTasks::contains)
-                .flatMap(t1 -> t1.getTasks().stream())
-                .count();
+       // double AvWorkingOnTask = project.getTaskLists().stream()
+       //         .filter(inProgressTasks::contains)
+       //         .flatMap(t1 -> t1.getTasks().stream())
+       //         .count();
         double days = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(t1 -> t1.getTasks().stream())
-                .mapToDouble(t1->LocalDate.now().getDayOfYear()-t1.getCreated().getDayOfYear())
-                //.boxed()
-                //.mapToDouble(i->i.intValue())
-                //.average()
-                //.getAsDouble();
-                .sum();
+                .mapToDouble(t1->DAYS.between(t1.getCreated(), LocalDate.now()))
+                .average()
+                .orElse(0);
+                //.sum();
 
-        double average = days/AvWorkingOnTask;
+        double average = days;
         //Then
         assertEquals(10, average,0);
     }
