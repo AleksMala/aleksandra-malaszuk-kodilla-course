@@ -1,8 +1,5 @@
 package com.kodilla.testing.forum.statistics;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DiscussionForum {
 
     private double commentPerPost;
@@ -29,11 +26,12 @@ public class DiscussionForum {
             commentPerUser = (double) comments / usersNumber;
         }
 
-        if (posts==0){
-            commentPerPost = 0;
+        if(posts == 0){
+            commentPerUser = 0;
         } else {
-            commentPerPost = (double) comments / (double) posts;
+            commentPerPost = (double) comments / posts;
         }
+
     }
 
     public double getPostPerUser() {
