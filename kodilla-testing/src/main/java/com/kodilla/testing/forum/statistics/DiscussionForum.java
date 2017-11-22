@@ -1,5 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiscussionForum {
@@ -8,9 +9,9 @@ public class DiscussionForum {
     private double commentPerPost;
     private double postPerUser;
     private double commentPerUser;
-    private int posts ;
+    private int posts;
     private int comments;
-    private List<String> users;
+    private List<String> users = new ArrayList<>();
 
     public DiscussionForum(Statistics statistics) {
         this.statistics = statistics;
@@ -20,9 +21,9 @@ public class DiscussionForum {
         posts = statistics.postsCount();
         comments = statistics.commentsCount();
         users =  statistics.usersNames();
-        postPerUser = posts/users.size();
-        commentPerUser = comments/users.size();
-        commentPerPost = comments/posts;
+        postPerUser = getPostsCount()/getUsersName().size();
+        commentPerUser = getCommentsCount()/getUsersName().size();
+        commentPerPost = getCommentsCount()/getPostsCount();
     }
 
     public double getPostPerUser(){

@@ -14,6 +14,7 @@ public class DiscussionForumTestSuite {
 
     @Before
     public void beforeEveryTest() {
+
     }
 
     @Test

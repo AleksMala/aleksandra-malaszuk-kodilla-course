@@ -1,10 +1,6 @@
 package com.kodilla.stream.array;
 
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Random;
-
 import static org.junit.Assert.assertEquals;
 
 public class ArrayOperationsTestSuite {
@@ -12,11 +8,14 @@ public class ArrayOperationsTestSuite {
     @Test
     public void testGetAverage() {
         //Given
-        int[] array = new int[20];
+        int [] numbers = new int[20];
+        for (int i=0; i<numbers.length; i++) {
+            numbers [i] = i;
+        }
         //When
-        ArrayOperations.getAverage(array);
+        ArrayOperations.getAverage(numbers);
         //Then
-        assertEquals(11.5, ArrayOperations.getAverage(array),0);
+        assertEquals(9.5, ArrayOperations.getAverage(numbers),0.1);
     }
 
 }
