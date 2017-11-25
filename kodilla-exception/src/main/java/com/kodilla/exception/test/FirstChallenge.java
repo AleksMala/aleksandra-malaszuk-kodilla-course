@@ -4,16 +4,9 @@ package com.kodilla.exception.test;
 public class FirstChallenge {
 
     public double divide(double a, double b) throws ArithmeticException {
-        try {
-            if (b == 0) {
-                throw new ArithmeticException();
-            }
 
-        } catch (ArithmeticException o) {
-            System.out.println("You can't divide by 0");
-
-        } finally {
-            System.out.println("Time to start learn");
+        if (b == 0) {
+            throw new ArithmeticException();
         }
         return a / b;
     }
@@ -22,8 +15,15 @@ public class FirstChallenge {
 
         FirstChallenge firstChallenge = new FirstChallenge();
 
-        double result = firstChallenge.divide(3, 0);
+        try {
+            double result = firstChallenge.divide(3, 0);
+            System.out.println(result);
 
-        System.out.println(result);
+        } catch (ArithmeticException a) {
+            System.out.println(a.getMessage());
+
+        } finally {
+            System.out.println("Time to start learn");
+        }
     }
 }
