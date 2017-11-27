@@ -9,11 +9,22 @@ public class SkyScanner {
 
         Map<String, Boolean> flights = new HashMap<>();     // tworzę obiekt mapy
         flights.put("Krakow", true);    // dodaję element do mapy obiektu flights
+        flights.put("Warsaw", false);
 
-            if (flights.get(flight.getDepartureAirport()) == null || flights.containsValue(false)) {    //podczas gdy wywołuję element sprawdzam czy jego wartość key równa się null
-                throw new RouteNotFoundException();     // jeśli tak jest to wywołuję Exception
-            }
-        return  true;   // jeśli wartośc key jest różna od null to wywołuję mapę,tak (o to chodzi z tym true) ?
+        Boolean flyTime = flights.get(flight.getDepartureAirport()); // przypisuje do klucza prawdę
+
+        if (flyTime == null) {    // przypisuje Boolean obiekt zerowy
+            throw new RouteNotFoundException();  // wywołuję wyjątek
+        }
+
+        if (flyTime){ // sprawdzam prawdziwość lotów
+            System.out.println("You can see the world");
+
+        } else {
+            System.out.println("You can not see the world");
+        }
+
+        return flyTime;// wywołuję boolean
     }
 
     public static void main (String args[]){
@@ -21,7 +32,7 @@ public class SkyScanner {
         SkyScanner skyScanner = new SkyScanner();
 
         try {
-            skyScanner.findFlight(new Flight (null, "Warsaw"));
+            skyScanner.findFlight(new Flight ("Krakow" , "Warsaw"));
 
         } catch (RouteNotFoundException e) {
             System.out.println(e.routeNotFoundException());
