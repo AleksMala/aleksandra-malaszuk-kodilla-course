@@ -12,12 +12,12 @@ public class FoodTwoDoor {
         this.delivererInformation = delivererInformation;
     }
 
-    public DeliveryDto process (final DeliveryInfo deliveryInfo){
+    public DeliveryDto processingDelivery (final DeliveryInfo deliveryInfo){
         boolean isAvailable = productInfo.productInfo(deliveryInfo.getProduct());
 
         if (isAvailable) {
-            delivererInformation.delivererInformation(deliveryInfo.getDeliverer());
-            processDelivery.processInfo(deliveryInfo.getDeliverer(), deliveryInfo.getProduct());
+            delivererInformation.delivererInfo(deliveryInfo.getDeliverer());
+            processDelivery.process(deliveryInfo.getDeliverer(), deliveryInfo.getProduct());
             return new DeliveryDto(deliveryInfo.getDeliverer(), true);
         } else {
             return new DeliveryDto(deliveryInfo.getDeliverer(), false);
@@ -27,13 +27,13 @@ public class FoodTwoDoor {
     public static void main (String args []){
 
         OrderRetriever orderRetriever = new OrderRetriever();
-        DeliveryInfo deliveryInfo = orderRetriever.retrieve().get(1);
+        DeliveryInfo deliveryInfo = orderRetriever.retrieve().iterator().next();
 
-        FoodSuplier extraFoodShop = new FoodSuplier();
-        FoodSuplierInfo extraFoodShopInfo = new FoodSuplierInfo();
+        ProcessDelivery processDelivery = new ExtraFoodShop();
         FoodSuplierProduct extraFoodShopProduct = new FoodSuplierProduct();
+        DelivererInformation delivererInformation = new DelivererName();
 
-        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(extraFoodShop, extraFoodShopProduct, extraFoodShopInfo);
-        System.out.println(foodTwoDoor.process(deliveryInfo));
+        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(delivererInformation, extraFoodShopProduct,processDelivery);
+        foodTwoDoor.processingDelivery(deliveryInfo);
     }
 }

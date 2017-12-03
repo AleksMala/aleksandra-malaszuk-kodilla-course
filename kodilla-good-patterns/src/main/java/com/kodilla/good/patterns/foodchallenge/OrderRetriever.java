@@ -7,20 +7,11 @@ public class OrderRetriever {
 
     public List<DeliveryInfo> retrieve() {
 
-        Product product = new Product("Peanut butter", 0);
-        Deliverer deliverer = new Deliverer("ExtraFoodShop ");
+        List<DeliveryInfo> deliveryInfos = new ArrayList<>();
+        deliveryInfos.add(new DeliveryInfo(new Deliverer("EFS"), new Product("butter")));
+        deliveryInfos.add(new DeliveryInfo(new Deliverer("GFS"), new Product("mik")));
+        deliveryInfos.add(new DeliveryInfo(new Deliverer("HS"), new Product("eggs")));
 
-        Product product1 = new Product("Vegetables ", 3);
-        Deliverer deliverer1 = new Deliverer("HealthyShop ");
-
-        Product product2 = new Product("flour ", 2);
-        Deliverer deliverer2 = new Deliverer("GlutenFreeShop ");
-
-        List<DeliveryInfo> deliverOptions = new ArrayList<>();
-        deliverOptions.add(new DeliveryInfo(deliverer, product));
-        deliverOptions.add(new DeliveryInfo(deliverer1, product1));
-        deliverOptions.add(new DeliveryInfo(deliverer2, product2));
-
-        return new ArrayList<>(deliverOptions);
+        return new ArrayList<>(deliveryInfos);
     }
 }

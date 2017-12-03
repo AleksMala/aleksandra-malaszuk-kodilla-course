@@ -37,6 +37,6 @@ public class FlightScanner {
         SearchFlight searchFlight = new SearchFlightExample();
 
         FlightScanner flightScanner = new FlightScanner(searchFlight,flightFrom, flightTo);
-        flightScanner.process(flight);
+        flightScanner.process(flight.get(1));
     }
 }

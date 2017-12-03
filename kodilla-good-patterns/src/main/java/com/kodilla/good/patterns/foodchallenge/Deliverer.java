@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.foodchallenge;
 
-public class Deliverer {
+public class Deliverer  {
 
     private String producerName;
 
@@ -10,12 +10,5 @@ public class Deliverer {
 
     public String getProducerName() {
         return producerName;
-    }
-
-    @Override
-    public String toString() {
-        return "Deliverer{" +
-                "producerName='" + producerName + '\'' +
-                '}';
     }
 }
