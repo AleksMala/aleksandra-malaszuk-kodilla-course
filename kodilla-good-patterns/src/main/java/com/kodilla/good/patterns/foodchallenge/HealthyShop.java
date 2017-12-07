@@ -1,9 +1,9 @@
 package com.kodilla.good.patterns.foodchallenge;
 
-public class HealthyShop implements ProcessDelivery{
+public class HealthyShop implements OrderService{
 
     @Override
-    public String process(Deliverer deliverer, Product product) {
-return deliverer.getProducerName();
+    public boolean process(Product product, int quantity) {
+        return false;
     }
 }

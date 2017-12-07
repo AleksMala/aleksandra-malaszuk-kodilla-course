@@ -2,16 +2,16 @@ package com.kodilla.good.patterns.foodchallenge;
 
 public class DeliveryDto {
 
-    private Deliverer deliverer;
+    private Product product;
     private boolean isAvailable;
 
-    public DeliveryDto(Deliverer deliverer, boolean isAvailable) {
-        this.deliverer = deliverer;
+    public DeliveryDto(Product product, boolean isAvailable) {
+        this.product = product;
         this.isAvailable = isAvailable;
     }
 
-    public Deliverer getDeliverer() {
-        return deliverer;
+    public Product getProduct() {
+        return product;
     }
 
     public boolean isAvailable() {

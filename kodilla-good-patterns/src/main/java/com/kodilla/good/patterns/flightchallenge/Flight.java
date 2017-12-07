@@ -1,35 +1,34 @@
 package com.kodilla.good.patterns.flightchallenge;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Flight {
 
-    private Arrival arrival;
-    private Departure departure;
-    private Map<Arrival, Departure> arrivalToDeparture = new HashMap<>();
-    private Map<Departure, Arrival> departureToArrival = new HashMap<>();
+    private String arrival;
+    private String departure;
 
-    public Flight(Arrival arrival, Departure departure) {
+    public Flight(String arrival, String departure) {
         this.arrival = arrival;
         this.departure = departure;
     }
 
-    public Arrival getArrival() {
+    public String getArrival() {
         return arrival;
     }
 
-    public Departure getDeparture() {
+    public String getDeparture() {
         return departure;
     }
 
-    public Map<Arrival, Departure> getArrivalToDeparture() {
-        return arrivalToDeparture;
+    /**public List<Flight> getArrival{
+        return
     }
 
-    public Map<Departure, Arrival> getDepartureToArrival() {
-        return departureToArrival;
+    public List<Flight> getDeparture{
+
     }
+
+    public List<List<Flight>> flightBetween{
+
+    }**/
 }

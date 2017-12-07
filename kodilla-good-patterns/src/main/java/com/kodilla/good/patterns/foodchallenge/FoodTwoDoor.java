@@ -3,37 +3,32 @@ package com.kodilla.good.patterns.foodchallenge;
 public class FoodTwoDoor {
 
     private ProductInfo productInfo;
-    private ProcessDelivery processDelivery;
-    private DelivererInformation delivererInformation;
+    private OrderService orderService;
 
-    public FoodTwoDoor (DelivererInformation delivererInformation, ProductInfo productInfo, ProcessDelivery processDelivery) {
+    public FoodTwoDoor (ProductInfo productInfo, OrderService orderService) {
         this.productInfo = productInfo;
-        this.processDelivery = processDelivery;
-        this.delivererInformation = delivererInformation;
+        this.orderService = orderService;
     }
 
-    public DeliveryDto processingDelivery (final DeliveryInfo deliveryInfo){
-        boolean isAvailable = productInfo.productInfo(deliveryInfo.getProduct());
+    public DeliveryDto processingDelivery (final Delivery delivery){
+         boolean isAvailable = orderService.process(delivery.getProduct(), delivery.getQuantity());
 
         if (isAvailable) {
-            delivererInformation.delivererInfo(deliveryInfo.getDeliverer());
-            processDelivery.process(deliveryInfo.getDeliverer(), deliveryInfo.getProduct());
-            return new DeliveryDto(deliveryInfo.getDeliverer(), true);
-        } else {
-            return new DeliveryDto(deliveryInfo.getDeliverer(), false);
+            productInfo.productInfo(delivery.getProduct());
+            orderService.process(delivery.getProduct(), delivery.getQuantity());
         }
+        return new DeliveryDto(delivery.getProduct(), isAvailable);
     }
 
     public static void main (String args []){
 
         OrderRetriever orderRetriever = new OrderRetriever();
-        DeliveryInfo deliveryInfo = orderRetriever.retrieve().iterator().next();
 
-        ProcessDelivery processDelivery = new ExtraFoodShop();
-        FoodSuplierProduct extraFoodShopProduct = new FoodSuplierProduct();
-        DelivererInformation delivererInformation = new DelivererName();
+        FoodSuplierProduct foodSuplierProduct = new FoodSuplierProduct();
 
-        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(delivererInformation, extraFoodShopProduct,processDelivery);
-        foodTwoDoor.processingDelivery(deliveryInfo);
+        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(foodSuplierProduct, orderRetriever.extraFoodShop);
+        for(Delivery deliveryInfo : orderRetriever.retrieve()) {
+            foodTwoDoor.processingDelivery(deliveryInfo);
+        }
     }
 }
