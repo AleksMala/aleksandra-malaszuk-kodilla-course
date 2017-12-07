@@ -1,7 +1,5 @@
 package com.kodilla.good.patterns.flightchallenge;
 
-import java.util.List;
-
 public class Flight {
 
     private String arrival;
@@ -20,15 +18,4 @@ public class Flight {
         return departure;
     }
 
-    /**public List<Flight> getArrival{
-        return
-    }
-
-    public List<Flight> getDeparture{
-
-    }
-
-    public List<List<Flight>> flightBetween{
-
-    }**/
 }

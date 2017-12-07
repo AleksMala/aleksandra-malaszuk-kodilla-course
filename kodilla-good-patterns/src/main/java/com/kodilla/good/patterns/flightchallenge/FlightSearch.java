@@ -1,17 +1,29 @@
 package com.kodilla.good.patterns.flightchallenge;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FlightSearch {
 
-    List<Flight> flightList = new ArrayList<>();
+    private FlightList flightList;
 
-    public FlightSearch(List<Flight> flightList) {
+    public FlightSearch(FlightList flightList) {
         this.flightList = flightList;
     }
 
-    public List<Flight> getFlightList() {
-        return flightList;
+    public List<Flight> getArrival(){
+        return flightList.flightList().stream()
+                .filter(f->f.getArrival()
+                        .equals("Krakow"))
+                .collect(Collectors.toList());
     }
+
+    public List<Flight> getDeparture(){
+        return flightList.flightList().stream()
+                .filter(f->f.getDeparture()
+                        .equals("Warsaw"))
+                .collect(Collectors.toList());;
+    }
+
+    public List<Flight> get
 }
