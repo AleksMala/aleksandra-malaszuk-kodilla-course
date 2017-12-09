@@ -18,8 +18,7 @@ public class OrderRequestRetriever {
 
         orderRequestList.add(new OrderRequest(user, product));
         orderRequestList.add(new OrderRequest(user1, product1));
-        orderRequestList.add(new OrderRequest(user2, null));
-
+        orderRequestList.add(new OrderRequest(user2, product2));
 
         return new ArrayList<>(orderRequestList);
     }

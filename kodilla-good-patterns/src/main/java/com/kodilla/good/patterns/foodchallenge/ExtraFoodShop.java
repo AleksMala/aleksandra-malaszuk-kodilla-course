@@ -3,20 +3,19 @@ package com.kodilla.good.patterns.foodchallenge;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExtraFoodShop implements OrderService {
+public class ExtraFoodShop implements Producer {
 
-    private static final Map<Product,Integer> numberOfSuplies = new HashMap<>();
-    private Delivery delivery;
+    private static final Map<Product,Integer> numberOfSupplies = new HashMap<>();
 
     @Override
-    public boolean process(Product product, int quantity) {
+    public boolean producerStorage (Product product, int quantity) {
 
-        numberOfSuplies.put(new Product("butter"), 6);
-        //numberOfSuplies.put(new Product("milk"), 0);
-        //numberOfSuplies.put(new Product("peanut butter"), 0);
-       // numberOfSuplies.put(new Product("eggs"), 0);
+        numberOfSupplies.put(new Product("butter"), 1);
+        numberOfSupplies.put(new Product("milk"), 1);
+        numberOfSupplies.put(new Product("peanut butter"), 1);
+        numberOfSupplies.put(new Product("eggs"), 1);
 
-        System.out.println(numberOfSuplies.entrySet());
+        System.out.println(numberOfSupplies.entrySet());
         return true;
     }
 

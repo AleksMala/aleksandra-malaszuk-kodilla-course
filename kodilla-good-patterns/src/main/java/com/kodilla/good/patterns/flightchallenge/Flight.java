@@ -18,4 +18,21 @@ public class Flight {
         return departure;
     }
 
+    @Override
+    public boolean equals(Object o){
+        Flight a = (Flight) o;
+        return (arrival.equals(a.getArrival()))&&(departure.equals(a.getDeparture()));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getArrival().hashCode();
+        result = 31 * result + getDeparture().hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return arrival +" "+ departure;
+    }
 }

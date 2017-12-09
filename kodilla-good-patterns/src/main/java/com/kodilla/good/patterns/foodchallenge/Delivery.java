@@ -3,17 +3,17 @@ package com.kodilla.good.patterns.foodchallenge;
 public class Delivery {
 
     private Product product;
-    private OrderService orderService;
+    private Producer producer;
     private int quantity;
 
-    public Delivery(OrderService orderService, Product product, int quantity) {
-        this.orderService = orderService;
+    public Delivery(Producer producer, Product product, int quantity) {
+        this.producer = producer;
         this.quantity = quantity;
         this.product = product;
     }
 
-    public OrderService orderService(){
-        return orderService;
+    public Producer getProducer(){
+        return producer;
     }
 
     public int getQuantity() {

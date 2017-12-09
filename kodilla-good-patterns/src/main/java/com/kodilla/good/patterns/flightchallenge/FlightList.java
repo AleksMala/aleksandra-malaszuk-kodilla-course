@@ -4,5 +4,9 @@ import java.util.List;
 
 public interface FlightList {
 
-    List<Flight> flightList();
+    List<Flight> getFlightList();
+
+    List<List<Flight>> getFlightsList();
+
+
 }

@@ -1,8 +1,5 @@
 package com.kodilla.good.patterns.challengetwo;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class ProductOrderService {
     private InformationService informationService;
     private OrderService orderService;
@@ -16,8 +13,8 @@ public class ProductOrderService {
         this.orderRepository = orderRepository;
     }
 
-    public OrderDto process(final OrderRequest orderRequest) throws Exception {
-        boolean isAvailable = orderService.order(orderRequest.getUser(), orderRequest.getProduct());
+    public OrderDto process(final OrderRequest orderRequest) {
+        boolean isAvailable = orderService.order(orderRequest.getUser(),orderRequest.getProduct());
 
         if(isAvailable) {
             informationService.inform(orderRequest.getUser());
@@ -26,7 +23,7 @@ public class ProductOrderService {
         return new OrderDto(orderRequest.getUser(), isAvailable);
     }
 
-    public static void main (String args []) throws Exception {
+    public static void main (String args []){
 
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
 
@@ -38,6 +35,5 @@ public class ProductOrderService {
         for (OrderRequest orderRequest: orderRequestRetriever.retrieve()) {
             productOrderService.process(orderRequest);
         }
-
     }
 }

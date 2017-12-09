@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.foodchallenge;
 
-public class FoodSuplierProduct implements ProductInfo {
+public class FoodSupplierProduct implements ProductInfo {
 
     @Override
     public String productInfo(Product product) {

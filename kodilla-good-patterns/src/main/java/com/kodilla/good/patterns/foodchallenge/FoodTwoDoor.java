@@ -4,18 +4,20 @@ public class FoodTwoDoor {
 
     private ProductInfo productInfo;
     private OrderService orderService;
+    private Producer producer;
 
-    public FoodTwoDoor (ProductInfo productInfo, OrderService orderService) {
+    public FoodTwoDoor (ProductInfo productInfo, OrderService orderService, Producer producer) {
         this.productInfo = productInfo;
         this.orderService = orderService;
+        this.producer = producer;
     }
 
     public DeliveryDto processingDelivery (final Delivery delivery){
-         boolean isAvailable = orderService.process(delivery.getProduct(), delivery.getQuantity());
+         boolean isAvailable = orderService.process(delivery.getProducer(), delivery.getProduct(), delivery.getQuantity());
 
         if (isAvailable) {
             productInfo.productInfo(delivery.getProduct());
-            orderService.process(delivery.getProduct(), delivery.getQuantity());
+            producer.producerStorage(delivery.getProduct(), delivery.getQuantity());
         }
         return new DeliveryDto(delivery.getProduct(), isAvailable);
     }
@@ -24,9 +26,10 @@ public class FoodTwoDoor {
 
         OrderRetriever orderRetriever = new OrderRetriever();
 
-        FoodSuplierProduct foodSuplierProduct = new FoodSuplierProduct();
+        FoodSupplierProduct foodSupplierProduct = new FoodSupplierProduct();
+        OrderService orderService = new OrderServiceInfo();
 
-        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(foodSuplierProduct, orderRetriever.extraFoodShop);
+        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(foodSupplierProduct, orderService, orderRetriever.efs);
         for(Delivery deliveryInfo : orderRetriever.retrieve()) {
             foodTwoDoor.processingDelivery(deliveryInfo);
         }
