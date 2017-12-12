@@ -12,7 +12,7 @@ public class Delivery {
         this.product = product;
     }
 
-    public Producer getProducer(){
+    public Producer getProducer() {
         return producer;
     }
 

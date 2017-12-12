@@ -11,12 +11,11 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public TaskList addTask(String text) {
-       tasks.add(text);
-       return new TaskList();
+    public void addTask(String text) {
+        tasks.add(text);
     }
 
-    public List<String> getTaskList(){
+    public List<String> getTaskList() {
         return new ArrayList<>(tasks);
     }
 }

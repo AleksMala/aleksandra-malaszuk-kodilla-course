@@ -19,9 +19,9 @@ public class Flight {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         Flight a = (Flight) o;
-        return (arrival.equals(a.getArrival()))&&(departure.equals(a.getDeparture()));
+        return (arrival.equals(a.getArrival())) && (departure.equals(a.getDeparture()));
     }
 
     @Override
@@ -33,6 +33,6 @@ public class Flight {
 
     @Override
     public String toString() {
-        return arrival +" "+ departure;
+        return arrival + " " + departure;
     }
 }

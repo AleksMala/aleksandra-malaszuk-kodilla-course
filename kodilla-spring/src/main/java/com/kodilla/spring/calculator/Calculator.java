@@ -10,24 +10,22 @@ public class Calculator {
     private Display display;
 
     public double add(double a, double b){
-        display.displayValue(a);
-        display.displayValue(b);
+        display.displayValue(a+b);
         return a+b;
     }
 
-    public void sub(double a, double b){
+    public double sub(double a, double b){
         display.displayValue(a-b);
+        return a-b;
     }
 
     public double mul(double a, double b){
-        display.displayValue(a);
-        display.displayValue(b);
+        display.displayValue(a*b);
         return a*b;
     }
 
     public double div(double a, double b){
-        display.displayValue(a);
-        display.displayValue(b);
+        display.displayValue(a/b);
         return a/b;
     }
 }

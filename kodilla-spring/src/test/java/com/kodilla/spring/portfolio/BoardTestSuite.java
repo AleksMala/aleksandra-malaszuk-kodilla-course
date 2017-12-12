@@ -1,5 +1,6 @@
 package com.kodilla.spring.portfolio;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -7,42 +8,41 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class BoardTestSuite {
 
+    private ApplicationContext context = new AnnotationConfigApplicationContext(BoardConfig.class);
+    private Board board = context.getBean(Board.class);
+
     @Test
     public void testToDoList() {
         //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext(Board.class);
-        Board board = context.getBean(Board.class);
         //When & Then
-        board.toDoList();
+        board.getToDoList();
     }
 
     @Test
-    public void testInProgress() {
+    public void testInProgressList() {
         //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext(Board.class);
-        Board board = context.getBean(Board.class);
         //When & Then
-        board.inProgressList();
+        board.getInProgressList();
     }
 
     @Test
     public void testDoneList() {
         //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext(Board.class);
-        Board board = context.getBean(Board.class);
         //When & Then
-        board.doneList();
+        board.getDoneList();
     }
 
     @Test
-    public void testTaskAdd(){
+    public void testTaskAdd() {
         //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext(Board.class);
-        Board board = context.getBean(Board.class);
+        Board board = context.getBean(Board.class, TaskList.class);
         //When
-        board.toDoList().addTask("Traveling");
-        board.inProgressList().addTask("Studying");
-        board.doneList().addTask("Cleaning");
+        board.getToDoList().addTask("Hi");
+        board.getInProgressList().addTask("Hey");
+        board.getDoneList().addTask("Hello");
         //Then
+        Assert.assertEquals("[Hi]", board.getToDoList().getTaskList().toString());
+        Assert.assertEquals("[Hey]", board.getInProgressList().getTaskList().toString());
+        Assert.assertEquals("[Hello]", board.getDoneList().getTaskList().toString());
     }
 }

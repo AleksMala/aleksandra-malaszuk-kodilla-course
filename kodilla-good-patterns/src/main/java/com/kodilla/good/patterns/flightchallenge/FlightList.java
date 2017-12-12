@@ -6,7 +6,4 @@ public interface FlightList {
 
     List<Flight> getFlightList();
 
-    List<List<Flight>> getFlightsList();
-
-
 }
