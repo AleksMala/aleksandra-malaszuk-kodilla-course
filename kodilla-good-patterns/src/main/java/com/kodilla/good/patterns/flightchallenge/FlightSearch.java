@@ -17,7 +17,7 @@ public class FlightSearch {
     public List<Flight> findArrivals(String arrival) {
         List<Flight> arrivals;
         arrivals = flightSearch.getFlightList().stream()
-                .filter(a -> a.getArrival().matches(arrival))
+                .filter(a -> a.getArrival().equals(arrival))
                 .collect(Collectors.toList());
         return arrivals;
     }
@@ -25,20 +25,17 @@ public class FlightSearch {
     public List<Flight> findDepartures(String departure) {
         List<Flight> departures;
         departures = flightSearch.getFlightList().stream()
-                .filter(d -> d.getDeparture().matches(departure))
+                .filter(d -> d.getDeparture().equals(departure))
                 .collect(Collectors.toList());
         return departures;
     }
 
-    public List<List<Flight>> findConnectingFlight(String departure, String arrival) {
+    public List<Flight> findConnectingFlight(String departure, String arrival) {
         List<List<Flight>> flightByConnectingCity = new ArrayList<>();
 
-        String regexString = Pattern.quote(arrival) + "(.*?)" + Pattern.quote(departure);
-        Pattern pattern = Pattern.compile(regexString);
+        flightByConnectingCity.stream()
+                .flatMap(flights -> flights.stream());
 
-        Matcher matcher = pattern.matcher(flightByConnectingCity.stream().flatMap(f -> f.stream()).toString());
-        if (matcher.find())
-            return flightByConnectingCity;
-        return new ArrayList<>();
+        return  null;
     }
 }

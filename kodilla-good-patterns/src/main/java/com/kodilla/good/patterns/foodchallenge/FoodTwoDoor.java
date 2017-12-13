@@ -17,7 +17,7 @@ public class FoodTwoDoor {
 
         if (isAvailable) {
             productInfo.productInfo(delivery.getProduct());
-            producer.process(delivery.getProduct(), delivery.getQuantity());
+            //producer.process(delivery.getProduct(), delivery.getQuantity());
 
         }
         return new DeliveryDto(delivery.getProduct(), isAvailable);

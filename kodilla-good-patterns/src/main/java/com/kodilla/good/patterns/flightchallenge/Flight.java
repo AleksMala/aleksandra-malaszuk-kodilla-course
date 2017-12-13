@@ -5,9 +5,9 @@ public class Flight {
     private String arrival;
     private String departure;
 
-    public Flight(String arrival, String departure) {
-        this.arrival = arrival;
-        this.departure = departure;
+    public Flight(String departures, String arrival) {
+        this.arrival = departures;
+        this.departure = arrival;
     }
 
     public String getArrival() {

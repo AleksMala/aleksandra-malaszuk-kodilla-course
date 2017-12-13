@@ -12,37 +12,24 @@ public class BoardTestSuite {
     private Board board = context.getBean(Board.class);
 
     @Test
-    public void testToDoList() {
-        //Given
-        //When & Then
-        board.getToDoList();
-    }
-
-    @Test
-    public void testInProgressList() {
-        //Given
-        //When & Then
-        board.getInProgressList();
-    }
-
-    @Test
-    public void testDoneList() {
-        //Given
-        //When & Then
-        board.getDoneList();
-    }
-
-    @Test
     public void testTaskAdd() {
         //Given
-        Board board = context.getBean(Board.class, TaskList.class);
+        TaskList toDo = new TaskList();
+        toDo.addTask("Hi");
+        toDo.addTask("Hi.2");
+        TaskList inProgress = new TaskList();
+        inProgress.addTask("Hey");
+        inProgress.addTask("Hey.2");
+        TaskList done = new TaskList();
+        done.addTask("Hello");
+        done.addTask("Hello.2");
         //When
-        board.getToDoList().addTask("Hi");
-        board.getInProgressList().addTask("Hey");
-        board.getDoneList().addTask("Hello");
+        String a = board.getToDoList(toDo).getTasks().get(1);
+        String b = board.getInProgressList(inProgress).getTasks().get(0);
+        String c = board.getDoneList(done).getTasks().get(1);
         //Then
-        Assert.assertEquals("[Hi]", board.getToDoList().getTaskList().toString());
-        Assert.assertEquals("[Hey]", board.getInProgressList().getTaskList().toString());
-        Assert.assertEquals("[Hello]", board.getDoneList().getTaskList().toString());
+        Assert.assertEquals("Hi.2", a);
+        Assert.assertEquals("Hey", b);
+        Assert.assertEquals("Hello.2", c);
     }
 }

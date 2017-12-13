@@ -3,18 +3,16 @@ package com.kodilla.good.patterns.flightChallenge;
 import com.kodilla.good.patterns.flightchallenge.Flight;
 import com.kodilla.good.patterns.flightchallenge.FlightList;
 import com.kodilla.good.patterns.flightchallenge.FlightSearch;
-
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class FlightChallenge {
 
@@ -32,14 +30,11 @@ public class FlightChallenge {
         flights.add(new Flight("Krakow", "Katowice"));
         when(flightListMock.getFlightList()).thenReturn(flights);
         //When
-        /** List<Flight> flight = new ArrayList<>();
-         flight.add(new Flight("Krakow", "Berlin"));
-         flight.add(new Flight("Krakow", "Warsaw"));
-         flight.add(new Flight("Krakow", "Katowice"));**/
         List<Flight> arrivalWithSameNameCity = flightSearch.findArrivals("Krakow");
         //Then
         Assert.assertEquals(3, arrivalWithSameNameCity.size());
-        Assert.assertEquals("[Krakow Berlin, Krakow Warsaw, Krakow Katowice]", arrivalWithSameNameCity.toString());
+        Assert.assertEquals(Arrays.asList(new Flight("Krakow", "Berlin"), new Flight("Krakow", "Warsaw"),
+                new Flight("Krakow", "Katowice")), arrivalWithSameNameCity);
     }
 
     @Test
@@ -55,7 +50,8 @@ public class FlightChallenge {
         List<Flight> departuresWithSameNameCity = flightSearch.findDepartures("Warsaw");
         //Then
         Assert.assertEquals(3, departuresWithSameNameCity.size());
-        Assert.assertEquals("[Krakow Warsaw, Paris Warsaw, Gdansk Warsaw]", departuresWithSameNameCity.toString());
+        Assert.assertEquals(Arrays.asList(new Flight("Krakow", "Warsaw"), new Flight("Paris", "Warsaw"),
+                new Flight("Gdansk", "Warsaw")), departuresWithSameNameCity);
     }
 
 
@@ -71,12 +67,12 @@ public class FlightChallenge {
         List<List<Flight>> flightList = new ArrayList<>();
         flightList.add(listKatowice);
         flightList.add(listKrk);
-        List<Flight> a = flightList.stream().flatMap(f->f.stream()).collect(Collectors.toList());
+        List<Flight> a = flightList.stream().flatMap(f -> f.stream()).collect(Collectors.toList());
         when(flightListMock.getFlightList()).thenReturn(a);
         //Given
-        String result = flightSearch.findConnectingFlight("Katowice", "Krakow").toString();
+        List<Flight> b = flightSearch.findConnectingFlight("Katowice", "Krakow");
         //Then
-        Assert.assertEquals("f",result);
+        Assert.assertEquals("f",b.toString());
     }
 
 }

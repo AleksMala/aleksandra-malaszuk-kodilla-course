@@ -18,11 +18,12 @@ public class ExtraFoodShop implements Producer {
     @Override
     public boolean process(Product product, int quantity) {
         System.out.println(getStockRooms());
-        OrderRetriever orderRetriever = new OrderRetriever();
-        if (orderRetriever.retrieve().iterator().next().getProduct().getProductName().equals(stockRoom.entrySet().iterator().next().getKey().getProductName())) {
-            int result = stockRoom.entrySet().iterator().next().getValue() - orderRetriever.retrieve().iterator().next().getQuantity();
-            System.out.println(getStockRooms().entrySet().iterator().next().getKey().getProductName() + result);
+
+        if(product.equals(stockRoom.entrySet())) {
+            int result = quantity - stockRoom.get(product);
+            System.out.println(result);
         }
         return true;
     }
+
 }

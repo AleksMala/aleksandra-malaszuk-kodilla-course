@@ -15,7 +15,7 @@ public class TaskList {
         tasks.add(text);
     }
 
-    public List<String> getTaskList() {
-        return new ArrayList<>(tasks);
+    public List<String> getTasks() {
+        return tasks;
     }
 }
