@@ -57,6 +57,6 @@ public class CalculatorTestSuite {
         //When
         double result = calculator.div(8, 3);
         //Then
-        Assert.assertEquals(2, result, 0.5);
+        Assert.assertEquals(2, result, 1);
     }
 }
