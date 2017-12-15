@@ -13,31 +13,31 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CalculatorTestSuite {
 
     @Test
-    public void testAdd(){
+    public void testAdd() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
         Calculator calculator = context.getBean(Calculator.class);
         //When
-        double result = calculator.add(5,7);
+        double result = calculator.add(5, 7);
         //Then
         Assert.assertEquals(12, result, 0);
     }
 
     @Test
-    public void testSub(){
+    public void testSub() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
         Calculator calculator = context.getBean(Calculator.class);
         //When
-        double result = calculator.sub(8,5);
+        double result = calculator.sub(8, 5);
         //Then
         Assert.assertEquals(3, result, 0);
     }
 
     @Test
-    public void testMul(){
+    public void testMul() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
@@ -49,7 +49,7 @@ public class CalculatorTestSuite {
     }
 
     @Test
-    public void testDiv(){
+    public void testDiv() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
@@ -57,6 +57,6 @@ public class CalculatorTestSuite {
         //When
         double result = calculator.div(8, 3);
         //Then
-        Assert.assertEquals(2, result, 1);
+        Assert.assertEquals(2.6, result, 0.1);
     }
 }

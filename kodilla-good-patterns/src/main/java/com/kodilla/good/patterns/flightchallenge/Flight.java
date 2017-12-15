@@ -5,9 +5,9 @@ public class Flight {
     private String arrival;
     private String departure;
 
-    public Flight(String departures, String arrival) {
-        this.arrival = departures;
-        this.departure = arrival;
+    public Flight(String departure, String arrival) {
+        this.departure = departure;
+        this.arrival = arrival;
     }
 
     public String getArrival() {
@@ -20,8 +20,12 @@ public class Flight {
 
     @Override
     public boolean equals(Object o) {
-        Flight a = (Flight) o;
-        return (arrival.equals(a.getArrival())) && (departure.equals(a.getDeparture()));
+        if (this == o) return true;
+        if (!(o instanceof Flight)) return false;
+
+        Flight flight = (Flight) o;
+
+        return getArrival().equals(flight.getArrival()) && getDeparture().equals(flight.getDeparture());
     }
 
     @Override
@@ -33,6 +37,6 @@ public class Flight {
 
     @Override
     public String toString() {
-        return arrival + " " + departure;
+        return departure + " " + arrival;
     }
 }

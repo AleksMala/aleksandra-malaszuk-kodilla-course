@@ -23,4 +23,5 @@ public class Delivery {
     public Product getProduct() {
         return product;
     }
+
 }
