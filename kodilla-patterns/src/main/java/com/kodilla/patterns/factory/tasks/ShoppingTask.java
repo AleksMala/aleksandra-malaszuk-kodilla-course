@@ -23,9 +23,6 @@ public final class ShoppingTask implements Task {
 
     @Override
     public boolean isTaskExecuted() {
-        if (quantity == 0) {
-            return false;
-        }
-        return true;
+        return quantity != 0;
     }
 }

@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Bigmac {
-    private final String roll;
+    private final Roll roll;
     private final int burgers;
     private final String sauce;
     private final List<String> ingredients;
 
     public static class BigmacBuilder {
-        private String roll;
+        private Roll roll;
         private int burgers;
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
 
-        public BigmacBuilder roll(String roll) {
+        public BigmacBuilder roll(String kindOfRoll) {
+            Roll roll = new Roll();
+            roll.getList();
             this.roll = roll;
             return this;
         }
@@ -40,14 +42,14 @@ public final class Bigmac {
         }
     }
 
-    public Bigmac(final String roll, final int burgers, final String sauce, List<String> ingredients) {
+    public Bigmac(final Roll roll, final int burgers, final String sauce, List<String> ingredients) {
         this.roll = roll;
         this.burgers = burgers;
         this.sauce = sauce;
         this.ingredients = ingredients;
     }
 
-    public String getRoll() {
+    public Roll getRoll() {
         return roll;
     }
 

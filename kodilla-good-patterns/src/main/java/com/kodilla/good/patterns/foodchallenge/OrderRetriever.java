@@ -15,6 +15,8 @@ public class OrderRetriever {
         deliveryInfos.add(new Delivery(efs, new Product("milk"), 1));
         deliveryInfos.add(new Delivery(efs, new Product("peanut butter"), 2));
         deliveryInfos.add(new Delivery(efs, new Product("eggs"), 1));
+        deliveryInfos.add(new Delivery(gfs, new Product("chocolate"), 1));
+        deliveryInfos.add(new Delivery(hs, new Product("water"), 1));
 
         return new ArrayList<>(deliveryInfos);
     }

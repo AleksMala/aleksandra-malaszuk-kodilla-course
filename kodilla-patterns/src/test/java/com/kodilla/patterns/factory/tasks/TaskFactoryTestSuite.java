@@ -39,4 +39,13 @@ public class TaskFactoryTestSuite {
         Assert.assertEquals("Your task is to paint sunset", paintingTask.executeTask());
         Assert.assertTrue(paintingTask.isTaskExecuted());
     }
+
+    @Test
+    public void testNullTask() {
+        //Given
+        //When
+        Task noTask = taskFactory.chooseTask("COOKING");
+        //Then
+        Assert.assertNull(noTask);
+    }
 }

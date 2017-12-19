@@ -5,6 +5,6 @@ public class OrderServiceInfo implements OrderService {
     @Override
     public boolean processOrder(Producer producer, Product product, int quantity) {
         System.out.println("Inventory after order: ");
-        return true;
+        return producer.process(product, quantity);
     }
 }

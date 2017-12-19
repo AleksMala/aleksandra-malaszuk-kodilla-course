@@ -12,14 +12,13 @@ public class ExtraFoodShop implements Producer {
         stockRoom.put(new Product("milk"), 10);
         stockRoom.put(new Product("eggs"), 10);
 
-        return new HashMap<>(stockRoom);
+        return stockRoom;
     }
 
     @Override
     public boolean process(Product product, int quantity) {
 
         Integer quantityInStore = stockRoom.get(product);
-        getStockRooms();
 
         if (quantityInStore == null) {
             return false;

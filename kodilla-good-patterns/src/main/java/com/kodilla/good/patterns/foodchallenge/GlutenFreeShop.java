@@ -5,15 +5,28 @@ import java.util.Map;
 
 public class GlutenFreeShop implements Producer {
 
-    private static final Map<Product, Integer> numberOfSupplies = new HashMap<>();
+    private static final Map<Product, Integer> stockRoom = new HashMap<>();
+
+    public Map<Product, Integer> getStockRoom() {
+        stockRoom.put(new Product("oil"), 4);
+        stockRoom.put(new Product("chocolate"), 3);
+        return stockRoom;
+    }
 
     @Override
     public boolean process(Product product, int quantity) {
 
-        numberOfSupplies.put(new Product("peanut butter"), 3);
-        numberOfSupplies.put(new Product("eggs"), 3);
+        Integer quantityStore = stockRoom.get(product);
 
-        System.out.println(numberOfSupplies.entrySet());
-        return true;
+        if (quantityStore == null) {
+            return false;
+        } else {
+            if (quantityStore >= quantity) {
+                stockRoom.put(product, quantityStore - quantity);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
