@@ -13,10 +13,11 @@ public class BigmacTestSuite {
     @Test
     public void testBigmac() {
         //Given
+        Roll roll = new Roll();
         Bigmac bigmac = new Bigmac.BigmacBuilder()
-                .roll(new Roll().getList().get(0))
+                .roll(roll.getList().get(1))
                 .burgers(2)
-                .sauce("mayo")
+                .sauce("standard")
                 .ingredient("lettuce")
                 .ingredient("tomato")
                 .ingredient("pickle")
@@ -27,6 +28,7 @@ public class BigmacTestSuite {
         bigmac.getIngredients().size();
         //Then
         Assert.assertEquals("roll without sesame", bigmac.getRoll());
-        Assert.assertEquals(4, bigmac.getIngredients().size());
+        Assert.assertEquals(2, bigmac.getIngredients().size());
+        Assert.assertTrue(bigmac.getIngredients().get(1).equals("pickle"));
     }
 }

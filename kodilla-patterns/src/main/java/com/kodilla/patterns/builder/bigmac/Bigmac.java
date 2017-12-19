@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Bigmac {
-    private final Roll roll;
+    private final String roll;
     private final int burgers;
     private final String sauce;
     private final List<String> ingredients;
 
     public static class BigmacBuilder {
-        private Roll roll;
+        private String roll;
         private int burgers;
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
 
         public BigmacBuilder roll(String kindOfRoll) {
+
             Roll roll = new Roll();
-            roll.getList();
-            this.roll = roll;
+            if (roll.getList().contains(kindOfRoll)) {
+                this.roll = kindOfRoll;
+            }
             return this;
         }
 
@@ -27,13 +29,21 @@ public final class Bigmac {
             return this;
         }
 
-        public BigmacBuilder sauce(String sauce) {
-            this.sauce = sauce;
+        public BigmacBuilder sauce(String kindOfSauce) {
+
+            Sauce sauce = new Sauce();
+            if (sauce.getList().contains(kindOfSauce))
+                this.sauce = kindOfSauce;
             return this;
         }
 
         public BigmacBuilder ingredient(String ingredient) {
-            ingredients.add(ingredient);
+            Ingredients ingredientsList = new Ingredients();
+            if (ingredientsList.getList().contains(ingredient)) {
+                ingredients.add(ingredient);
+            } else {
+                System.out.println("no " + ingredient);
+            }
             return this;
         }
 
@@ -42,14 +52,14 @@ public final class Bigmac {
         }
     }
 
-    public Bigmac(final Roll roll, final int burgers, final String sauce, List<String> ingredients) {
+    public Bigmac(final String roll, final int burgers, final String sauce, List<String> ingredients) {
         this.roll = roll;
         this.burgers = burgers;
         this.sauce = sauce;
         this.ingredients = ingredients;
     }
 
-    public Roll getRoll() {
+    public String getRoll() {
         return roll;
     }
 

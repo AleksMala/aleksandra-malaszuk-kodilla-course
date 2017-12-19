@@ -14,11 +14,4 @@ public class Roll {
         list.add("roll with cheese");
         return list;
     }
-
-    @Override
-    public String toString() {
-        return "Roll{" +
-                "list=" + list +
-                '}';
-    }
 }
