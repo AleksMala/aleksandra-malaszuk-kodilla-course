@@ -28,6 +28,7 @@ public class BigmacTestSuite {
         Assert.assertTrue(Ingredients.PICKLE.equals("pickle"));
         Assert.assertFalse(Ingredients.LIST_OF_INGREDIENTS.contains("tomato"));
         Assert.assertFalse(Sauce.BARBECUE_DRESSING.equals(bigmac.getSauce()));
+        Assert.assertNotNull(bigmac);
     }
 
     @Rule
