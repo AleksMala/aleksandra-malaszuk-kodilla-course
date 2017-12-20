@@ -7,12 +7,10 @@ public class ExtraFoodShop implements Producer {
 
     private static final Map<Product, Integer> stockRoom = new HashMap<>();
 
-    public Map<Product, Integer> getStockRooms() {
+    public ExtraFoodShop() {
         stockRoom.put(new Product("peanut butter"), 10);
         stockRoom.put(new Product("milk"), 10);
         stockRoom.put(new Product("eggs"), 10);
-
-        return stockRoom;
     }
 
     @Override

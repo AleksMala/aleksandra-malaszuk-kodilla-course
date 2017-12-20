@@ -18,6 +18,8 @@ public final class Bigmac {
         public BigmacBuilder roll(String kindOfRoll) {
             if (Roll.AVAILABLE_ROLLS.contains(kindOfRoll)) {
                 this.roll = kindOfRoll;
+            } else {
+                throw new IllegalArgumentException("Please, choose available roll");
             }
             return this;
         }
@@ -31,7 +33,7 @@ public final class Bigmac {
             if (Sauce.AVAILABLE_SAUCE.contains(kindOfSauce)) {
                 this.sauce = kindOfSauce;
             } else {
-                throw new NullPointerException("You need to choose dressing");
+                throw new IllegalArgumentException("You need to choose dressing");
             }
             return this;
         }
@@ -40,11 +42,7 @@ public final class Bigmac {
             if (Ingredients.LIST_OF_INGREDIENTS.contains(ingredient)) {
                 ingredients.add(ingredient);
             } else {
-                try {
-                    throw new Exception();
-                } catch (Exception e) {
-                    System.out.println("Sorry, " + ingredient + " is not available");
-                }
+                throw new IllegalArgumentException("Ingredient you chose is not available");
             }
             return this;
         }

@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.Arrays;
+
 public class BigmacTestSuite {
 
 
@@ -12,32 +14,26 @@ public class BigmacTestSuite {
     public void testBigmac() {
         //Given
         Bigmac bigmac = new Bigmac.BigmacBuilder()
-                .roll("roll without sesame")
+                .roll(Roll.ROLL_WITHOUT_SESAME)
                 .burgers(2)
                 .sauce(Sauce.AVAILABLE_SAUCE.get(0))
-                .ingredient("lettuce")
-                .ingredient("tomato")
-                .ingredient("pickle")
-                .ingredient("beetroot")
+                .ingredient(Ingredients.LETTUCE)
+                .ingredient(Ingredients.MUSHROOMS)
+                .ingredient(Ingredients.PICKLE)
                 .build();
         System.out.println(bigmac);
         //When
         //Then
         Assert.assertEquals(Roll.ROLL_WITHOUT_SESAME, bigmac.getRoll());
-        Assert.assertEquals(2, bigmac.getIngredients().size());
+        Assert.assertEquals(3, bigmac.getIngredients().size());
+        Assert.assertEquals(Arrays.asList(Ingredients.LETTUCE, Ingredients.MUSHROOMS, Ingredients.PICKLE), bigmac.getIngredients());
         Assert.assertTrue(Ingredients.PICKLE.equals("pickle"));
-        Assert.assertFalse(Ingredients.LIST_OF_INGREDIENTS.contains("tomato"));
         Assert.assertFalse(Sauce.BARBECUE_DRESSING.equals(bigmac.getSauce()));
-        Assert.assertNotNull(bigmac);
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testThrowExceptionForSauce() {
         //Given
-        thrown.expect(NullPointerException.class);
         Bigmac bigmac = new Bigmac.BigmacBuilder()
                 .roll("roll without sesame")
                 .burgers(2)

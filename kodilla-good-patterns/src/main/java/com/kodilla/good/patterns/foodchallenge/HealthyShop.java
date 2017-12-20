@@ -7,11 +7,9 @@ public class HealthyShop implements Producer {
 
     private static final Map<Product, Integer> stockRoom = new HashMap<>();
 
-    public Map<Product, Integer> getStockRoom() {
+    public HealthyShop() {
         stockRoom.put(new Product("vegetables"), 5);
         stockRoom.put(new Product("water"), 4);
-
-        return stockRoom;
     }
 
     @Override

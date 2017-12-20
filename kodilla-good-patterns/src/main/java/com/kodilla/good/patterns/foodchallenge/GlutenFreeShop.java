@@ -7,10 +7,9 @@ public class GlutenFreeShop implements Producer {
 
     private static final Map<Product, Integer> stockRoom = new HashMap<>();
 
-    public Map<Product, Integer> getStockRoom() {
+    public GlutenFreeShop() {
         stockRoom.put(new Product("oil"), 4);
         stockRoom.put(new Product("chocolate"), 3);
-        return stockRoom;
     }
 
     @Override
