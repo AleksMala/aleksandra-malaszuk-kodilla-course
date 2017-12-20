@@ -1,17 +1,14 @@
 package com.kodilla.patterns.builder.bigmac;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Sauce {
 
-    private List<String> listOfSauce = new ArrayList<>();
+    public static final String STANDARD_DRESSING = "standard";
+    public static final String THOUSAND_ISLAND_DRESSING = "1000 island";
+    public static final String BARBECUE_DRESSING = "barbecue";
 
-    public List<String> getList() {
-
-        listOfSauce.add("standard");
-        listOfSauce.add("1000 island");
-        listOfSauce.add("barbecue");
-        return listOfSauce;
-    }
+    public static final List<String> AVAILABLE_SAUCE = Arrays.asList(STANDARD_DRESSING,
+            THOUSAND_ISLAND_DRESSING, BARBECUE_DRESSING);
 }

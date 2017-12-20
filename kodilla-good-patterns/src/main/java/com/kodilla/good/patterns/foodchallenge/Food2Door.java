@@ -1,15 +1,13 @@
 package com.kodilla.good.patterns.foodchallenge;
 
-public class FoodTwoDoor {
+public class Food2Door {
 
     private ProductInfo productInfo;
     private OrderService orderService;
-    private Producer producer;
 
-    public FoodTwoDoor(ProductInfo productInfo, OrderService orderService, Producer producer) {
+    public Food2Door(ProductInfo productInfo, OrderService orderService) {
         this.productInfo = productInfo;
         this.orderService = orderService;
-        this.producer = producer;
     }
 
     public DeliveryDto processingDelivery(final Delivery delivery) {
@@ -28,7 +26,7 @@ public class FoodTwoDoor {
         FoodSupplierProduct foodSupplierProduct = new FoodSupplierProduct();
         OrderService orderService = new OrderServiceInfo();
 
-        FoodTwoDoor foodTwoDoor = new FoodTwoDoor(foodSupplierProduct, orderService, orderRetriever.efs);
+        Food2Door foodTwoDoor = new Food2Door(foodSupplierProduct, orderService);
         for (Delivery deliveryInfo : orderRetriever.retrieve()) {
             foodTwoDoor.processingDelivery(deliveryInfo);
         }

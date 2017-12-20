@@ -16,9 +16,7 @@ public final class Bigmac {
         private List<String> ingredients = new ArrayList<>();
 
         public BigmacBuilder roll(String kindOfRoll) {
-
-            Roll roll = new Roll();
-            if (roll.getList().contains(kindOfRoll)) {
+            if (Roll.AVAILABLE_ROLLS.contains(kindOfRoll)) {
                 this.roll = kindOfRoll;
             }
             return this;
@@ -30,19 +28,23 @@ public final class Bigmac {
         }
 
         public BigmacBuilder sauce(String kindOfSauce) {
-
-            Sauce sauce = new Sauce();
-            if (sauce.getList().contains(kindOfSauce))
+            if (Sauce.AVAILABLE_SAUCE.contains(kindOfSauce)) {
                 this.sauce = kindOfSauce;
+            } else {
+                throw new NullPointerException("You need to choose dressing");
+            }
             return this;
         }
 
         public BigmacBuilder ingredient(String ingredient) {
-            Ingredients ingredientsList = new Ingredients();
-            if (ingredientsList.getList().contains(ingredient)) {
+            if (Ingredients.LIST_OF_INGREDIENTS.contains(ingredient)) {
                 ingredients.add(ingredient);
             } else {
-                System.out.println("no " + ingredient);
+                try {
+                    throw new Exception();
+                } catch (Exception e) {
+                    System.out.println("Sorry, " + ingredient + " is not available");
+                }
             }
             return this;
         }

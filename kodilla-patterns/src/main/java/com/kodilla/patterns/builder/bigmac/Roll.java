@@ -1,17 +1,14 @@
 package com.kodilla.patterns.builder.bigmac;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Roll {
 
-    private List<String> list = new ArrayList<>();
+    public static final String ROLL_WITH_SESAME = "roll with sesame";
+    public static final String ROLL_WITHOUT_SESAME = "roll without sesame";
+    public static final String ROLL_WITH_CHEESE = "roll with cheese";
 
-    public List<String> getList() {
-
-        list.add("roll with sesame");
-        list.add("roll without sesame");
-        list.add("roll with cheese");
-        return list;
-    }
+    public static final List<String> AVAILABLE_ROLLS = Arrays.asList(ROLL_WITH_SESAME,
+            ROLL_WITHOUT_SESAME, ROLL_WITH_CHEESE);
 }
