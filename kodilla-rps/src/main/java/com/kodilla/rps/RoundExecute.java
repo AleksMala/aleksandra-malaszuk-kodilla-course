@@ -1,56 +1,39 @@
 package com.kodilla.rps;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class RoundExecute {
 
-    private ComputerChoice computerChoice;
-    private UserChoice userChoice;
-    static List<String> userPoints = new ArrayList<>();
-    static List<String> computerPoints = new ArrayList<>();
+    private RPSChoice rpsChoice;
+    private Rules rules;
 
-    public RoundExecute(ComputerChoice computerChoice, UserChoice userChoice) {
-        this.computerChoice = computerChoice;
-        this.userChoice = userChoice;
+    public RoundExecute(RPSChoice rpsChoice) {
+        this.rpsChoice = rpsChoice;
     }
 
     public void action() {
-        Rules rules = new Rules();
 
-        if (userChoice.test().equals(computerChoice.test())) {
+        ScannerInfo scannerInfo = new ScannerInfo();
+
+        String user = rpsChoice.userChoice(scannerInfo.getNumber());
+        String computer = rpsChoice.computerChoice();
+
+        if (user.equals(computer)) {
             System.out.println("tie");
-        } else {
-
-            if (userChoice.test().equals(AllowedMoves.PAPER) && computerChoice.test().equals(AllowedMoves.ROCK)) {
-                rules.paperOverRock();
-                userPoints.add("u");
-            }
-
-            if (userChoice.test().equals(AllowedMoves.SCISSORS) && computerChoice.test().equals(AllowedMoves.PAPER)) {
-                rules.scissorsOverPaper();
-                userPoints.add("u");
-            }
-
-            if (userChoice.test().equals(AllowedMoves.ROCK) && computerChoice.test().equals(AllowedMoves.SCISSORS)) {
-                rules.rockOverScissors();
-                userPoints.add("u");
-            }
-
-            if (userChoice.test().equals(AllowedMoves.ROCK) && computerChoice.test().equals(AllowedMoves.PAPER)) {
-                rules.paperOverRock();
-                computerPoints.add("c");
-            }
-            if (userChoice.test().equals(AllowedMoves.PAPER) && computerChoice.test().equals(AllowedMoves.SCISSORS)) {
-                rules.scissorsOverPaper();
-                computerPoints.add("c");
-            }
-            if (userChoice.test().equals(AllowedMoves.SCISSORS) && computerChoice.test().equals(AllowedMoves.ROCK)) {
-                rules.rockOverScissors();
-                computerPoints.add("c");
-            }
-            System.out.println("score: user " + userPoints.size() + " / computer " + computerPoints.size());
+        } else if (user.equals(AllowedMoves.PAPER) && computer.equals(AllowedMoves.ROCK)) {
+            rules.paperOverRock();
+        } else if (user.equals(AllowedMoves.SCISSORS) && computer.equals(AllowedMoves.PAPER)) {
+            rules.scissorsOverPaper();
+        } else if (user.equals(AllowedMoves.ROCK) && computer.equals(AllowedMoves.SCISSORS)) {
+            rules.rockOverScissors();
+        } else if (user.equals(AllowedMoves.ROCK) && computer.equals(AllowedMoves.PAPER)) {
+            rules.paperOverRock();
+        } else if (user.equals(AllowedMoves.PAPER) && computer.equals(AllowedMoves.SCISSORS)) {
+            rules.scissorsOverPaper();
+        } else if (user.equals(AllowedMoves.SCISSORS) && computer.equals(AllowedMoves.ROCK)) {
+            rules.rockOverScissors();
         }
     }
 }
+

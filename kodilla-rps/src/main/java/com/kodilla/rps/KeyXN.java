@@ -8,17 +8,17 @@ public class KeyXN {
         System.out.println("Do You want to play (n) or end (x) ?");
         switch (scanner.next()) {
             case "n":
-                if(areYouSure(scanner)) {
+                if (areYouSure(scanner)) {
                     System.out.println("Rock, Paper, Scissors!");
                     return true;
                 } else {
-                    return false ;
+                    return false;
                 }
-            case "x" :
-                if(areYouSure(scanner)) {
+            case "x":
+                if (areYouSure(scanner)) {
                     return false;
                 } else {
-                    return true ;
+                    return true;
                 }
 
             default:
@@ -28,12 +28,12 @@ public class KeyXN {
         return false;
     }
 
-    private static boolean areYouSure(Scanner scanner){
+    private static boolean areYouSure(Scanner scanner) {
         System.out.println("Are You sure y/n ?");
-        switch (scanner.next()){
-            case "y" :
+        switch (scanner.next()) {
+            case "y":
                 return true;
-            case   "n":
+            case "n":
                 return false;
             default:
                 System.out.println("Invalid option!");
