@@ -10,8 +10,9 @@ public class Product {
 
     private int id;
     private String name;
+    private Invoice invoice;
 
-    public Product(){
+    public Product() {
     }
 
     public Product(String name) {
@@ -31,7 +32,7 @@ public class Product {
     }
 
     @NotNull
-    @Column(name = "PRODUCT_NAME")
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -40,4 +41,13 @@ public class Product {
         this.name = name;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "INVOICE_ID")
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
 }

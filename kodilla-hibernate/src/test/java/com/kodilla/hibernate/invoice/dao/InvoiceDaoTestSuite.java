@@ -39,18 +39,21 @@ public class InvoiceDaoTestSuite {
         item.setProduct(product);
         item1.setProduct(product1);
         item2.setProduct(product2);
+        item.setInvoice(invoice);
+        item1.setInvoice(invoice);
+        item2.setInvoice(invoice1);
+        product.setInvoice(invoice);
+        product1.setInvoice(invoice);
+        product2.setInvoice(invoice1);
 
-        productDao.save(product);
-        productDao.save(product1);
-        productDao.save(product2);
-        itemDao.save(item);
-        itemDao.save(item1);
-        itemDao.save(item2);
         invoiceDao.save(invoice);
         invoiceDao.save(invoice1);
         int invoiceNumber = invoice.getId();
+        int items = invoice1.getItems().size();
 
-        Assert.assertNotEquals(1, invoiceNumber);
+        Assert.assertNotEquals(0, invoiceNumber);
+        Assert.assertEquals("F-ra 105", product.getInvoice().toString());
+        Assert.assertEquals(1, items);
 
     }
 }

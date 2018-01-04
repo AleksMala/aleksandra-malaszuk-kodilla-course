@@ -3,17 +3,18 @@ package com.kodilla.hibernate.invoice;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "INVOICE")
+@Table(name = "INVOICES")
 public class Invoice {
 
     private int id;
     private String number;
     private List<Item> items;
 
-    public Invoice(){
+    public Invoice() {
     }
 
     public Invoice(String number) {
@@ -23,7 +24,7 @@ public class Invoice {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "INVOICE_ID", unique = true)
+    @Column(name = "ITEM_ID", unique = true)
     public int getId() {
         return id;
     }
@@ -32,7 +33,7 @@ public class Invoice {
         this.id = id;
     }
 
-    @Column(name = "INVOICE_NUMBER")
+    @Column(name = "NUMBER")
     public String getNumber() {
         return number;
     }
@@ -42,11 +43,12 @@ public class Invoice {
     }
 
     @OneToMany(targetEntity = Item.class, mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
     private void setItems(List<Item> items) {
         this.items = items;
     }
+
 }

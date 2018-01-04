@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedQuery(
-        name="Company.retrieveCompanyName",
-        query="FROM Company WHERE name LIKE name:NAME"
+        name = "Company.retrieveCompanyName",
+        query = "FROM Company WHERE name LIKE :NAME"
 )
 @Entity
 @Table(name = "COMPANIES")
@@ -36,6 +36,7 @@ public class Company {
     public String getName() {
         return name;
     }
+
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     public List<Employee> getEmployees() {
         return employees;
