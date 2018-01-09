@@ -3,7 +3,6 @@ package com.kodilla.hibernate.invoice;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity

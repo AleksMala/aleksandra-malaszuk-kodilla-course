@@ -55,5 +55,10 @@ public class InvoiceDaoTestSuite {
         Assert.assertEquals("F-ra 105", product.getInvoice().toString());
         Assert.assertEquals(1, items);
 
+        try {
+            invoiceDao.deleteAll();
+        } catch (Exception e) {
+        }
+
     }
 }

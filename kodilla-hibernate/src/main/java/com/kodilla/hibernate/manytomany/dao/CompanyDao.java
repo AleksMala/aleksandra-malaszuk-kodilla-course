@@ -12,6 +12,6 @@ import java.util.StringJoiner;
 @Repository
 public interface CompanyDao extends CrudRepository<Company, Integer> {
 
-    List<Company> retrieveCompanyName (@Param("NAME") boolean sequenceStringOfCompanyName);
+    List<Company> retrieveCompanyName (@Param("NAME") String firstLetterOfCompanyName);
 
 }

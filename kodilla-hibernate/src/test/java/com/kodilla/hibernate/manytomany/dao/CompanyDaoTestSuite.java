@@ -76,16 +76,19 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
 
         //When
-        CharSequence sequence = "Sof";
-        List<Company> companyName = companyDao.retrieveCompanyName(companyDao.findAll().iterator().next().getName().contains(sequence));
+        List<Company> companyName = companyDao.retrieveCompanyName("sof");
 
         //Then
-        //Assert.assertEquals(1, companyName.size());
-        Assert.assertEquals("Software Machine", companyName.toString());
+        Assert.assertEquals(1, companyName.size());
 
         //CleanUp
-        companyDao.deleteAll();
-        employeeDao.deleteAll();
+        try {
+            companyDao.deleteAll();
+            employeeDao.deleteAll();
+        } catch (Exception e) {
+            //do nothing
+        }
+
     }
 
     @Test
@@ -101,7 +104,11 @@ public class CompanyDaoTestSuite {
         Assert.assertEquals(1, employeeLastname.size());
 
         //CleanUp
-        employeeDao.deleteAll();
-        companyDao.deleteAll();
+        try {
+            companyDao.deleteAll();
+            employeeDao.deleteAll();
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
