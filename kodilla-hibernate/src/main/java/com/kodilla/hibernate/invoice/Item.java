@@ -36,7 +36,6 @@ public class Item {
         this.id = id;
     }
 
-
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
     public Product getProduct() {
@@ -77,7 +76,7 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "INVOICE_ID")
-    private Invoice getInvoice() {
+    public Invoice getInvoice() {
         return invoice;
     }
 

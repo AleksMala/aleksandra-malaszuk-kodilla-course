@@ -41,12 +41,12 @@ public class Invoice {
         this.number = number;
     }
 
-    @OneToMany(targetEntity = Item.class, mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Item.class, mappedBy = "invoice", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     public List<Item> getItems() {
         return items;
     }
 
-    private void setItems(List<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 
