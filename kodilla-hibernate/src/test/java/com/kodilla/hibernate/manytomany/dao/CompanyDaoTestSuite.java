@@ -3,7 +3,6 @@ package com.kodilla.hibernate.manytomany.dao;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +19,17 @@ public class CompanyDaoTestSuite {
     @Autowired
     EmployeeDao employeeDao;
 
-    private static Employee johnSmith = new Employee("John", "Smith");
-    private static Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-    private static Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+    @Test
 
-    private static Company softwareMachine = new Company("Software Machine");
-    private static Company dataMaesters = new Company("Data Maesters");
-    private static Company greyMatter = new Company("Grey Matter");
+    public void testSaveManyToMany() {
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
 
-    @Before
-    public void executedBeforeEach() {
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
         softwareMachine.getEmployees().add(johnSmith);
         dataMaesters.getEmployees().add(stephanieClarckson);
         dataMaesters.getEmployees().add(lindaKovalsky);
@@ -41,11 +41,7 @@ public class CompanyDaoTestSuite {
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
-    }
 
-    @Test
-
-    public void testSaveManyToMany() {
         //When
         companyDao.save(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
@@ -70,6 +66,11 @@ public class CompanyDaoTestSuite {
 
     @Test
     public void testNamedCompanies() {
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
         companyDao.save(softwareMachine);
         companyDao.save(dataMaesters);
         companyDao.save(greyMatter);
@@ -82,16 +83,21 @@ public class CompanyDaoTestSuite {
 
         //CleanUp
         try {
-            companyDao.deleteAll();
-            employeeDao.deleteAll();
+            companyDao.delete(softwareMachine.getId());
+            companyDao.delete(dataMaesters.getId());
+            companyDao.delete(greyMatter.getId());
         } catch (Exception e) {
             //do nothing
         }
-
     }
 
     @Test
     public void testEmployeeWithLastname() {
+
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
         employeeDao.save(johnSmith);
         employeeDao.save(lindaKovalsky);
         employeeDao.save(stephanieClarckson);
@@ -104,8 +110,9 @@ public class CompanyDaoTestSuite {
 
         //CleanUp
         try {
-            companyDao.deleteAll();
-            employeeDao.deleteAll();
+            employeeDao.delete(johnSmith.getId());
+            employeeDao.delete(stephanieClarckson.getId());
+            employeeDao.delete(lindaKovalsky.getId());
         } catch (Exception e) {
             //do nothing
         }

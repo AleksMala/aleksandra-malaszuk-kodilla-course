@@ -52,9 +52,11 @@ public class InvoiceDaoTestSuite {
         item1.setInvoice(invoice);
         item2.setInvoice(invoice1);
 
+        productDao.save(product);
+        productDao.save(product1);
+        productDao.save(product2);
         invoiceDao.save(invoice);
         invoiceDao.save(invoice1);
-        productDao.save(product);
 
         int invoiceNumber = invoice.getId();
         int items = invoice1.getItems().size();
@@ -63,7 +65,11 @@ public class InvoiceDaoTestSuite {
         Assert.assertEquals(1, items);
 
         try {
-            invoiceDao.deleteAll();
+            invoiceDao.delete(invoice.getId());
+            invoiceDao.delete(invoice1.getId());
+            productDao.delete(product.getId());
+            productDao.delete(product1.getId());
+            productDao.delete(product2.getId());
         } catch (Exception e) {
           }
     }

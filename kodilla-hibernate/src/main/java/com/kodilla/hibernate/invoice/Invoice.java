@@ -41,7 +41,7 @@ public class Invoice {
         this.number = number;
     }
 
-    @OneToMany(targetEntity = Item.class, mappedBy = "invoice", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Item.class, mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<Item> getItems() {
         return items;
     }
