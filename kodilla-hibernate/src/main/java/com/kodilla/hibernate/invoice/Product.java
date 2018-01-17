@@ -42,7 +42,7 @@ public class Product {
         this.name = name;
     }
 
-    @OneToMany(targetEntity = Item.class, mappedBy = "product", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Item.class, mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<Item> getItems() {
         return items;
     }

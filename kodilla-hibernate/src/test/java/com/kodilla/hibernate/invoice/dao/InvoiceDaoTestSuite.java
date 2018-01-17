@@ -29,12 +29,12 @@ public class InvoiceDaoTestSuite {
     public void testInvoiceDaoSave() {
 
         Item item = new Item(new BigDecimal("120"), 4);
-        Item item2 = new Item(new BigDecimal("50"), 12);
         Item item1 = new Item(new BigDecimal("500"), 1);
+        Item item2 = new Item(new BigDecimal("50"), 12);
 
         Product product = new Product("chair");
-        Product product2 = new Product("candle");
         Product product1 = new Product("table");
+        Product product2 = new Product("candle");
 
         product.setItems(Arrays.asList(item));
         product1.setItems(Arrays.asList(item1));
@@ -71,6 +71,6 @@ public class InvoiceDaoTestSuite {
             productDao.delete(product1.getId());
             productDao.delete(product2.getId());
         } catch (Exception e) {
-          }
+        }
     }
 }
