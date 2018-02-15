@@ -60,9 +60,6 @@ public class CompanyDaoTestSuite {
             companyDao.delete(softwareMachineId);
             companyDao.delete(dataMaestersId);
             companyDao.delete(greyMatterId);
-            employeeDao.delete(johnSmith.getId());
-            employeeDao.delete(stephanieClarckson.getId());
-            employeeDao.delete(lindaKovalsky.getId());
         } catch (Exception e) {
             //do nothing
         }

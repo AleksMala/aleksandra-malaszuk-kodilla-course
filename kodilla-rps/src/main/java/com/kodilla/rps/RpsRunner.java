@@ -1,23 +1,24 @@
 package com.kodilla.rps;
 
+import java.util.Scanner;
+
 public class RpsRunner {
 
-    RPSChoice rpsChoice;
 
     public void method() {
-
-        int x = 0;
-        while (x < 5) {
-            x++;
-            System.out.println("Round: " + x);
-
+        RPSChoice rpsChoice = new RPSChoice();
+        int n = 0;
+        while (n <= Input.numOfRounds) {
             RoundExecute roundExecute = new RoundExecute(rpsChoice);
             roundExecute.action();
-
+        }
+        while (new KeyXN().playAgain(new Scanner(System.in))) {
+            KeyXN.areYouSure(new Scanner(System.in));
             //KeyXN keyXN = new KeyXN();
             //keyXN.playAgain(new Scanner(System.in));
         }
     }
+
 
     public static void main(String args[]) {
 

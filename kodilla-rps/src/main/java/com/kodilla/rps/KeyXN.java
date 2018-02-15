@@ -28,7 +28,7 @@ public class KeyXN {
         return false;
     }
 
-    private static boolean areYouSure(Scanner scanner) {
+    public static boolean areYouSure(Scanner scanner) {
         System.out.println("Are You sure y/n ?");
         switch (scanner.next()) {
             case "y":

@@ -1,8 +1,6 @@
 package com.kodilla.rps;
 
 
-import java.util.Scanner;
-
 public class RoundExecute {
 
     private RPSChoice rpsChoice;
@@ -15,8 +13,7 @@ public class RoundExecute {
     public void action() {
 
         ScannerInfo scannerInfo = new ScannerInfo();
-
-        String user = rpsChoice.userChoice(scannerInfo.getNumber());
+        String user = rpsChoice.userChoice(scannerInfo);
         String computer = rpsChoice.computerChoice();
 
         if (user.equals(computer)) {
