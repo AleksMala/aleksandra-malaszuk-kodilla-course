@@ -2,6 +2,7 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.facade.CorpFacade;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -18,6 +20,8 @@ public class CompanyDaoTestSuite {
     CompanyDao companyDao;
     @Autowired
     EmployeeDao employeeDao;
+    @Autowired
+    CorpFacade corpFacade;
 
     @Test
 
@@ -118,4 +122,19 @@ public class CompanyDaoTestSuite {
             //do nothing
         }
     }
+
+    @Test
+    public void testSearchService() {
+        List<Company> companies = companyDao.retrieveCompanyByFragment("war");
+
+        List<Employee> employees = employeeDao.retrieveEmployeeByFragment("66666bnn");;
+
+        try {
+            corpFacade.searchProcess(companies);
+        } catch (Exception e) {
+            System.out.println("lol");
+        }
+
+    }
+
 }
