@@ -19,10 +19,9 @@ public class OrderFacade {
     private ShopService shopService;
     private static Logger LOGGER = LoggerFactory.getLogger(OrderFacade.class);
 
-   @Around("execution(* com.kodilla.patterns2.facade.ShopService.openOrder(..))" +
+    @Around("execution(* com.kodilla.patterns2.facade.ShopService.openOrder(..))" +
             "&& args(userId) && target(order)")
     public void processOrder(final OrderDto order, final Long userId) throws OrderProcessingException {
-       LOGGER.info("Class: " + order.getClass().getName() + ", Args: " + userId);
         boolean wasError = false;
         long orderId = shopService.openOrder(userId);
         LOGGER.info("Registering new order, ID " + orderId);
@@ -33,6 +32,7 @@ public class OrderFacade {
         }
         try {
             for (ItemDto orderItem : order.getItems()) {
+                LOGGER.info("Class: " + order.getClass().getName() + ", Args: " + userId);
                 LOGGER.info("Adding Item " + orderItem.getProductId() + " " + orderItem.getQuantity() + " pcs+");
                 shopService.addItem(orderId, orderItem.getProductId(), orderItem.getQuantity());
             }
@@ -56,6 +56,7 @@ public class OrderFacade {
                 throw new OrderProcessingException(OrderProcessingException.ERR_SUBMITTING_ERROR);
             }
             LOGGER.info("Order " + orderId + " submitted");
+
         } finally {
             if (wasError) {
                 LOGGER.info("Cancelling order " + orderId);
