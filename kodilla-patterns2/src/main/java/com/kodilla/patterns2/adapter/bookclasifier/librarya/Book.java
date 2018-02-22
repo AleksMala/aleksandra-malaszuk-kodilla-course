@@ -6,7 +6,7 @@ public class Book {
     public final int publicationYear;
     public final String signature;
 
-    public Book(String author, String title, int publicationYear, String signature) {
+    public Book(final String author, String title,final int publicationYear, String signature) {
         this.author = author;
         this.title = title;
         this.publicationYear = publicationYear;
@@ -27,5 +27,15 @@ public class Book {
 
     public String getSignature() {
         return signature;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", signature='" + signature + '\'' +
+                '}';
     }
 }

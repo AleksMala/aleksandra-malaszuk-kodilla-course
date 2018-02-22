@@ -8,7 +8,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "Company.retrieveCompanyByFragment",
-                query = "FROM Company WHERE name LIKE %:NAME%"),
+                query = "FROM Company WHERE name LIKE CONCAT('%',:NAME, '%')"),
         @NamedQuery(
                 name = "Company.retrieveCompanyName",
                 query = "FROM Company WHERE name LIKE CONCAT(:NAME, '%')"

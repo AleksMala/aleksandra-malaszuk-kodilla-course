@@ -8,7 +8,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "Employee.retrieveEmployeeByFragment",
-                query = "FROM Employee WHERE lastname LIKE %:LASTNAME%"),
+                query = "FROM Employee WHERE lastname LIKE CONCAT('%',:LASTNAME,'%')"),
         @NamedQuery(
                 name = "Employee.retrieveLastname",
                 query = "FROM Employee WHERE lastname =:LASTNAME"
