@@ -26,12 +26,8 @@ public class CorpFacadeTestSuite {
     private EmployeeDao employeeDao;
 
     @Test
-    public void CorpSearchTestSuite() {
+    public void testFindCompanyNameByFragment() {
         //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
-
         Company softwareMachine = new Company("Software Machine");
         Company dataMaesters = new Company("Data Maesters");
         Company greyMatter = new Company("Grey Matter");
@@ -40,17 +36,26 @@ public class CorpFacadeTestSuite {
         companyDao.save(dataMaesters);
         companyDao.save(greyMatter);
 
+        //When
+        List<Company> newList = corpSearchService.searchForCompany("te");
+        //Then
+        assertEquals(2, newList.size());
+    }
+
+    @Test
+    public void testFindEmployeeNameByFragment() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
         employeeDao.save(johnSmith);
         employeeDao.save(lindaKovalsky);
         employeeDao.save(stephanieClarckson);
 
         //When
-        List<Company> newList = corpSearchService.searchForCompany("a");
         List<Employee> newEmployeeList = corpSearchService.serchForEmployee("mit");
         //Then
-        assertEquals(3, newList.size());
         assertEquals(1, newEmployeeList.size());
-
-
     }
 }

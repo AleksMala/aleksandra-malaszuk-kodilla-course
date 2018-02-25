@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-@EnableAspectJAutoProxy
 public class ShopService {
     private final List<Order> orders = new ArrayList<>();
     @Autowired
