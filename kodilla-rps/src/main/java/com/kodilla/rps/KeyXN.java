@@ -1,26 +1,16 @@
 package com.kodilla.rps;
 
-import java.util.Scanner;
-
 public class KeyXN {
+    private ScannerInfo scannerInfo;
 
-    public boolean playAgain(Scanner scanner) {
+    public boolean playAgain(ScannerInfo scannerInfo) {
         System.out.println("Do You want to play (n) or end (x) ?");
-        switch (scanner.next()) {
+        switch (scannerInfo.getWord()) {
             case "n":
-                if (areYouSure(scanner)) {
-                    System.out.println("Rock, Paper, Scissors!");
-                    return true;
-                } else {
-                    return false;
-                }
+                return areYouSure(scannerInfo);
+            //System.out.println("Rock, Paper, Scissors!");
             case "x":
-                if (areYouSure(scanner)) {
-                    return false;
-                } else {
-                    return true;
-                }
-
+                return (areYouSure(scannerInfo)); //{
             default:
                 System.out.println("Invalid option!");
                 break;
@@ -28,9 +18,9 @@ public class KeyXN {
         return false;
     }
 
-    public static boolean areYouSure(Scanner scanner) {
+    public static boolean areYouSure(ScannerInfo scannerInfo) {
         System.out.println("Are You sure y/n ?");
-        switch (scanner.next()) {
+        switch (scannerInfo.getWord()) {
             case "y":
                 return true;
             case "n":

@@ -7,13 +7,14 @@ public class RpsRunner {
 
     public void method() {
         RPSChoice rpsChoice = new RPSChoice();
-        int n = 0;
-        while (n <= Input.numOfRounds) {
-            RoundExecute roundExecute = new RoundExecute(rpsChoice);
-            roundExecute.action();
-        }
-        while (new KeyXN().playAgain(new Scanner(System.in))) {
-            KeyXN.areYouSure(new Scanner(System.in));
+
+        while (RoundExecute.scoreForUser+1 <= Input.numOfRounds ) {
+                RoundExecute roundExecute = new RoundExecute(rpsChoice);
+                roundExecute.action();
+            }
+
+        while (new KeyXN().playAgain(new ScannerInfo())) {
+            KeyXN.areYouSure(new ScannerInfo());
             //KeyXN keyXN = new KeyXN();
             //keyXN.playAgain(new Scanner(System.in));
         }

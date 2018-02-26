@@ -39,7 +39,13 @@ public class CorpFacadeTestSuite {
         //When
         List<Company> newList = corpSearchService.searchForCompany("te");
         //Then
-        assertEquals(2, newList.size());
+        assertEquals(1, newList.size());
+        //CleanUp
+        try {
+            companyDao.deleteAll();
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 
     @Test
@@ -56,6 +62,13 @@ public class CorpFacadeTestSuite {
         //When
         List<Employee> newEmployeeList = corpSearchService.serchForEmployee("mit");
         //Then
-        assertEquals(1, newEmployeeList.size());
+        assertEquals(3, newEmployeeList.size());
+
+        //CleanUp
+        try {
+            employeeDao.deleteAll();
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
