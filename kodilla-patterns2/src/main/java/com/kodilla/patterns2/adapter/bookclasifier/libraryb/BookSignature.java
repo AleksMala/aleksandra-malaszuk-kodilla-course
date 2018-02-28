@@ -10,4 +10,19 @@ public class BookSignature {
     public String getSignature() {
         return signature;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookSignature)) return false;
+
+        BookSignature that = (BookSignature) o;
+
+        return signature.equals(that.signature);
+    }
+
+    @Override
+    public int hashCode() {
+        return signature.hashCode();
+    }
 }
