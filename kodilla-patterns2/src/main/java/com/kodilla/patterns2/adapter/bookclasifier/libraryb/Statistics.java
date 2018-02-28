@@ -9,7 +9,7 @@ public class Statistics implements BookStatistics {
         if (books.size() == 0) return 0;
         int sum = 0;
         for (Map.Entry<BookSignature, Book> entry : books.entrySet()) {
-            sum += entry.getValue().getPublicationYear();
+            sum += entry.getValue().getYearOfPublication();
         }
         return sum / books.size();
     }
@@ -20,7 +20,7 @@ public class Statistics implements BookStatistics {
         int[] years = new int[books.size()];
         int n = 0;
         for (Map.Entry<BookSignature, Book> entry : books.entrySet()) {
-            years[n] = entry.getValue().getPublicationYear();
+            years[n] = entry.getValue().getYearOfPublication();
             n++;
         }
         Arrays.sort(years);
