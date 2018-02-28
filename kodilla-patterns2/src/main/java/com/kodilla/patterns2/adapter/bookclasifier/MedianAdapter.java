@@ -4,10 +4,8 @@ import com.kodilla.patterns2.adapter.bookclasifier.librarya.Book;
 import com.kodilla.patterns2.adapter.bookclasifier.librarya.Classifier;
 import com.kodilla.patterns2.adapter.bookclasifier.libraryb.BookSignature;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class MedianAdapter extends MedianAdaptee implements Classifier {
@@ -15,11 +13,12 @@ public class MedianAdapter extends MedianAdaptee implements Classifier {
     public int publicationYearMedian(Set<Book> bookSet) {
 
         Map<BookSignature, com.kodilla.patterns2.adapter.bookclasifier.libraryb.Book> books =
-                bookSet.stream().collect(Collectors.toMap(Book::getSignature,
-                        b-> new com.kodilla.patterns2.adapter.bookclasifier.libraryb.Book(b.getAuthor(),
+                bookSet.stream().collect(Collectors.toMap(
+                        b -> new BookSignature(b.getSignature()),
+                        b -> new com.kodilla.patterns2.adapter.bookclasifier.libraryb.Book(
+                                b.getAuthor(),
                                 b.getTitle(), b.getPublicationYear())));
-
-            return madianPublicationYear(books);
-        }
+        return madianPublicationYear(books);
     }
+}
 
