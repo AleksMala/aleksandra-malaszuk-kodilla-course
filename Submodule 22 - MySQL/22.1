@@ -1,0 +1,18 @@
+DROP FUNCTION IF EXISTS NameUser;
+
+DELIMITER $$
+
+CREATE FUNCTION NameUser(iduser INT) RETURNS VARCHAR(20) DETERMINISTIC
+BEGIN
+	DECLARE reader VARCHAR(20);
+	IF iduser <= 5 THEN
+		SET reader = (SELECT FIRSTNAME FROM readers WHERE READER_ID = iduser);
+	ELSEIF iduser <= 0 THEN
+		SET reader = "No user name with given id";
+	END IF;
+    RETURN reader;
+END $$
+
+DELIMITER ;
+
+SELECT NameUser(3) AS NAME;
