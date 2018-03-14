@@ -29,3 +29,20 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+CREATE FUNCTION Bestsellers(booksreaded INT)
+
+DELIMITER $$
+
+BEGIN
+DECLARE result BOOLEAN;
+	IF booksreaded > 2 THEN
+		SET result = TRUE;
+	ELSEIF booksreaded <= 2 THEN
+		SET result = FALSE;
+	END IF;
+	RETURN result;
+END $$
+
+DELIMITER ;
