@@ -31,9 +31,10 @@ END $$
 DELIMITER ;
 
 
-CREATE FUNCTION Bestsellers(booksreaded INT)
-
+DROP FUNCTION IF EXISTS Bestsellers;
 DELIMITER $$
+
+CREATE FUNCTION Bestsellers(booksreaded INT) RETURNS BOOLEAN
 
 BEGIN
 DECLARE result BOOLEAN;
@@ -43,6 +44,6 @@ DECLARE result BOOLEAN;
 		SET result = FALSE;
 	END IF;
 	RETURN result;
-END $$
+END$$
 
 DELIMITER ;
