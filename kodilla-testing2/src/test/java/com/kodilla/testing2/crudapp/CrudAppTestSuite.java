@@ -54,18 +54,19 @@ public class CrudAppTestSuite {
     private void sendTestTaskToTrello(String taskName) throws InterruptedException {
         driver.navigate().refresh();
 
-        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
+        while(!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-        driver.findElements(By.xpath("//form[@class=\"datatable_row\"]")).stream()
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
                 .filter(anyForm ->
-                        anyForm.findElement(By.xpath(".//select[contains(@class, \"datatable_select\")]"))
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
                                 .getText().equals(taskName))
                 .forEach(theForm -> {
                     WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));
                     Select select = new Select(selectElement);
                     select.selectByIndex(1);
 
-                    WebElement buttonCreatedCard = theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
+                    WebElement buttonCreatedCard =
+                            theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
                     buttonCreatedCard.click();
                 });
         Thread.sleep(5000);
@@ -77,9 +78,15 @@ public class CrudAppTestSuite {
         WebDriver driverTrello = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driverTrello.get(TRELLO_URL);
 
-        driverTrello.findElement(By.id("user")).sendKeys("o.malaszuk@gmail.com");
-        driverTrello.findElement(By.id("password")).sendKeys("osesek123");
+        driverTrello.findElement(By.id("user")).sendKeys("malaleksandra2@gmail.com");
+        driverTrello.findElement(By.id("password")).sendKeys("kodila2017");
         driverTrello.findElement(By.id("login")).submit();
+
+        Thread.sleep(2000);
+
+        driverTrello.findElements(By.xpath("//a[@class=\"board_title\"]")).stream()
+                .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Board\"]")).size()>0)
+                .forEach(aHref->aHref.click());
 
         Thread.sleep(2000);
 
@@ -93,22 +100,29 @@ public class CrudAppTestSuite {
         return result;
     }
 
-    @Test
-    public void shouldCreateTrelloCard() throws InterruptedException {
-        String taskName = createCrudAppTestTask();
-        sendTestTaskToTrello(taskName);
-    }
-
     private void shouldRemoveCreatedCrudAppTestTask(String taskName) throws InterruptedException {
+        driver.navigate().refresh();
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-        driver.findElements(By.xpath("//form[@class=\"datatable_row\"]")).stream()
-                .filter(form -> form.findElement(By.xpath(".//fieldset[contains(@class, \"datatable__row-section--button-section\")]"))
-                        .getText().equals(taskName))
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
+//                .filter(form -> form.findElement(By.xpath("//fieldset[@class=\"datatable__row-section datatable__row-section--button-section\"]"))
+//                        .getText().equals(taskName))
                 .forEach(form -> {
-                    WebElement selectElement = form.findElement(By.xpath("//button[contains(text(), \"Delete\")]"));
+                    WebElement selectElement = form.findElement(By.xpath(".//button[text()=\"Delete\"]"));
                     selectElement.click();
                 });
         Thread.sleep(5000);
     }
+
+    @Test
+    public void shouldCreateTrelloCard() throws InterruptedException {
+        String taskName = createCrudAppTestTask();
+        //sendTestTaskToTrello(taskName);
+        shouldRemoveCreatedCrudAppTestTask(taskName);
+    }
+
+
 }
