@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class StoredProcTestSuite {
 
@@ -23,7 +24,7 @@ public class StoredProcTestSuite {
         statement.execute(sqlProcedureCall);
 
         //Then
-        String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM READERS WHERE VIP_LEVEL=\"Note set\"";
+        String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM READERS WHERE VIP_LEVEL=\"Not set\"";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
         int howMany = -1;
         if (rs.next()) {
@@ -45,12 +46,13 @@ public class StoredProcTestSuite {
         statement.execute(sqlProcedureCall);
 
         //Then
-        String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLERS=\"0\"";
+        String sqlCheckTable = "SELECT COUNT(*) AS NULL_ERRORS FROM BOOKS WHERE BESTSELLERS=\"null\"";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
-        int howMany = -1;
+        String result = "null";
         if (rs.next()) {
-            howMany = rs.getInt("HOW_MANY");
+            result = rs.getString("NULL_ERRORS");
         }
-        assertEquals(2, howMany);
+        assertNotNull(result);
+        assertEquals(4, result.compareTo("4"));
     }
 }
