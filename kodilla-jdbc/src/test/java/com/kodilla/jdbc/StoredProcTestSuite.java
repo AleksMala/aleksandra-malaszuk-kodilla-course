@@ -52,7 +52,7 @@ public class StoredProcTestSuite {
         if (rs.next()) {
             result = rs.getInt("NULL_ERRORS");
             if(rs.wasNull()){
-                System.out.println("sql is invalid");
+                System.out.println("SQL is invalid");
             }
         }
         assertEquals(0, result);
