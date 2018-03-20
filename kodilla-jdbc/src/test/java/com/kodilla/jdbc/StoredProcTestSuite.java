@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class StoredProcTestSuite {
 
@@ -37,7 +36,7 @@ public class StoredProcTestSuite {
     public void testUpdateBestsellers() throws SQLException {
         //Given
         DbManager dbManager = DbManager.getInstance();
-        String sqlUpdate = "UPDATE BOOKS SET BESTSELLERS=\"null\"";
+        String sqlUpdate = "UPDATE BOOKS SET BESTSELLERS=null";
         Statement statement = dbManager.getConnection().createStatement();
         statement.executeUpdate(sqlUpdate);
 
@@ -46,14 +45,11 @@ public class StoredProcTestSuite {
         statement.execute(sqlProcedureCall);
 
         //Then
-        String sqlCheckTable = "SELECT COUNT(*) AS NULL_ERRORS FROM BOOKS WHERE BESTSELLERS=\"null\"";
+        String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLERS IS NULL";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
         int result = 0;
         if (rs.next()) {
-            result = rs.getInt("NULL_ERRORS");
-            if(rs.wasNull()){
-                System.out.println("SQL is invalid");
-            }
+            result = rs.getInt("HOW_MANY");
         }
         assertEquals(0, result);
     }
