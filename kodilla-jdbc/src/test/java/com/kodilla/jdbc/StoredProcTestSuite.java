@@ -48,11 +48,12 @@ public class StoredProcTestSuite {
         //Then
         String sqlCheckTable = "SELECT COUNT(*) AS NULL_ERRORS FROM BOOKS WHERE BESTSELLERS=\"null\"";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
-        String result = "null";
+        int result = 1;
         if (rs.next()) {
-            result = rs.getString("NULL_ERRORS");
+            result = rs.getRow();
+
         }
         assertNotNull(result);
-        assertEquals(4, result.compareTo("4"));
+        assertEquals(1, result);
     }
 }
