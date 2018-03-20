@@ -37,7 +37,7 @@ public class StoredProcTestSuite {
     public void testUpdateBestsellers() throws SQLException {
         //Given
         DbManager dbManager = DbManager.getInstance();
-        String sqlUpdate = "UPDATE BOOKS SET BESTSELLERS=\"0\"";
+        String sqlUpdate = "UPDATE BOOKS SET BESTSELLERS=\"null\"";
         Statement statement = dbManager.getConnection().createStatement();
         statement.executeUpdate(sqlUpdate);
 
@@ -48,12 +48,13 @@ public class StoredProcTestSuite {
         //Then
         String sqlCheckTable = "SELECT COUNT(*) AS NULL_ERRORS FROM BOOKS WHERE BESTSELLERS=\"null\"";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
-        int result = 1;
+        int result = 0;
         if (rs.next()) {
-            result = rs.getRow();
-
+            result = rs.getInt("NULL_ERRORS");
+            if(rs.wasNull()){
+                System.out.println("sql is invalid");
+            }
         }
-        assertNotNull(result);
-        assertEquals(1, result);
+        assertEquals(0, result);
     }
 }

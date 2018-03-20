@@ -18,11 +18,11 @@ public class FacebookTestingApp {
 
         WebElement selectCombo = driver.findElement(By.xpath(XPATH_SELECT_DAY));
         Select selectBoard = new Select(selectCombo);
-        selectBoard.selectByValue("02");
+        selectBoard.selectByValue("2");
 
         WebElement selectCombo2 = driver.findElement(By.xpath(XPATH_SELECT_MONTH));
         Select selectBoard2 = new Select(selectCombo2);
-        selectBoard2.selectByValue("25");
+        selectBoard2.selectByValue("11");
 
         WebElement selectCombo3 = driver.findElement(By.xpath(XPATH_SELECT_YEAR));
         Select selectBoard3 = new Select(selectCombo3);
